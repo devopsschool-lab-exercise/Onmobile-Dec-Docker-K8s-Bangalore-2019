@@ -472,3 +472,101 @@ Docker Netwokring
 Docker volume
 
 Docker regirty..
+=======================================================================
+What Docker Image
+        - Collection of Layers.
+What is layer
+        - filesystems
+        - UUID by SHA256
+        - Each layer their Parents
+What is Layer0?
+        - base image
+        - rootfs
+======================================
+What is Container?
+        Whatever we in image we can see in container.
+        - All the layer of images merge into ONE(RW) layer and attached to Rw empty layer(This is a container.)
+        - Union Mounts.
+
+========================================================
+Jenkins
+        openjdk:8-jdk
+                buildpack-deps:stretch-scm
+                        buildpack-deps:stretch-curl
+                                        debian:stretch
+                                                        scratch
+=================================================================
+Base Image
+        JDK5 - TOMCAT 
+        JDK6
+        JDK7
+        JDk8
+        JDK9
+        JDk9 - TOMCAT 5 Apace 2
+                        Apche 3
+             - TOMCAT 6   
+==============================
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8 && Redis && mysql && tomcat ----- IMAGE
+App---- - IMAGE
+
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8  - IMAGE
+&& Redis && - IMAGE
+ mysql &&  - IMAGE
+ tomcat - IMAGE
+App----
+=============
+
+
+How to create image?
+        - Using Existing Container
+        - Dockerfile
+                - EACH LINE WOULD CRAETE ONE LAYER.
+                - NEXT LAYER WOULD BE CREATED FROM A CONTAINER OF PREVIOUS LATYER
+                
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>
+RUN apt-get update
+RUN apt-get install git -y
+
+======================
+rootfs  - 1 Layer
+        - openjdk  - - 2 Layer
+                - Tomcat  - - 3 Layer
+                                - APP   - - 4 Layer
+=======================================================================================
+DAY 2 - 13.233.49.156
+
+
+
+FROM ubuntu 
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>        af2d9cefb7ef
+RUN touch /opt/rajesh1.txt                              913e12e3b57e
+RUN touch /opt/rajesh2.txt                              85b13f506baa
+
+   1  docker pull ubuntu
+    2  sudo systemctl enable docker
+    3  sudo systemctl start docker
+    4  docker pull ubuntu
+    5  clear
+    6  docker images
+    7  docker inspect ubuntu
+    8  clear
+    9  docker history ubuntu
+   10  clear
+   11  cd
+   12  ls
+   13  vi doc1
+   14  docker build -t dock1 -f doc1 .
+   15  docker cleaer
+   16  clear
+   17  docker images
+   18  docker history dock1
+   19  docker inspect dock1
+   20  clear
+   21  docker history dock1
+   22  docker help diff
+   23  clear
+   24  history

@@ -570,3 +570,30 @@ RUN touch /opt/rajesh2.txt                              85b13f506baa
    22  docker help diff
    23  clear
    24  history
+
+   CMD VS ENTRYPOINT
+   ========================
+   Mode of Execution.
+
+CMD 
+        CMD is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holdin - it get exited.
+        CMD be can be replaced any time.
+
+- Shell Mode 
+echo "Rajesh Kumar"
+
+- exec mode
+/bin/echo fsdfs
+
+ENTRYPOINT
+        ENTRYPOINT is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holding - it get exited.
+        ENTRYPOINT CAN NOT BE REPLACED and 
+                        IF PARAMETER password to a ENTRPOINT - it get appended as param to the ENTRYPOINT.
+
+/bin/tini -- /usr/local/bin/jenkins.sh 33333
+
+Lab - 15 mins - https://www.devopsschool.com/tutorial/docker/docker-run-vs-cmd-entrypoint.html

@@ -1,0 +1,100 @@
+=======================================================================================
+DAY 2 - 13.233.49.156
+
+
+
+FROM ubuntu 
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>        af2d9cefb7ef
+RUN touch /opt/rajesh1.txt                              913e12e3b57e
+RUN touch /opt/rajesh2.txt                              85b13f506baa
+
+   1  docker pull ubuntu
+    2  sudo systemctl enable docker
+    3  sudo systemctl start docker
+    4  docker pull ubuntu
+    5  clear
+    6  docker images
+    7  docker inspect ubuntu
+    8  clear
+    9  docker history ubuntu
+   10  clear
+   11  cd
+   12  ls
+   13  vi doc1
+   14  docker build -t dock1 -f doc1 .
+   15  docker cleaer
+   16  clear
+   17  docker images
+   18  docker history dock1
+   19  docker inspect dock1
+   20  clear
+   21  docker history dock1
+   22  docker help diff
+   23  clear
+   24  history
+
+   CMD VS ENTRYPOINT
+   ========================
+   Mode of Execution.
+
+CMD 
+        CMD is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holdin - it get exited.
+        CMD be can be replaced any time.
+
+- Shell Mode 
+echo "Rajesh Kumar"
+
+- exec mode
+/bin/echo fsdfs
+
+ENTRYPOINT
+        ENTRYPOINT is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holding - it get exited.
+        ENTRYPOINT CAN NOT BE REPLACED and 
+                        IF PARAMETER password to a ENTRPOINT - it get appended as param to the ENTRYPOINT.
+
+/bin/tini -- /usr/local/bin/jenkins.sh 33333
+
+Lab - 15 mins - https://www.devopsschool.com/tutorial/docker/docker-run-vs-cmd-entrypoint.html
+
+====================================================
+Registry        
+        pub
+                hub.docker.com
+                        Regiter -> USERID n PASS
+                google registry
+        pvt
+                Artifactory
+                nexus
+                ECR
+                registry
+
+docker login https://index.docker.io/v1/
+docker login http//18.7.7.7.7/fdsfsf
+
+docker push imagename
+docker push http//18.7.7.7.7/fdsfsf
+
+  64  docker images
+   65  docker info
+   66  clear
+   67  docker images
+   68  docker login
+   69  docker push dock1
+   70  docker images
+   71  docker tag dock1 scmgalaxy/dock1
+   72  docker images
+   73  docker push scmgalaxy/dock1
+   74  docker tag dock1 scmgalaxy/dock1:v1
+   75  docker images
+   76  docker push scmgalaxy/dock1:v1
+   77  history
+
+https://www.devopsschool.com/blog/how-to-setup-docker-repository-in-artifactory-and-push-pull-images/
+https://www.devopsschool.com/blog/setup-artifactory-pro-6-1-0-using-docker-containtainer/
+https://www.devopsschool.com/blog/how-to-setup-docker-registry-repository-using-jfrog-artifactory/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/

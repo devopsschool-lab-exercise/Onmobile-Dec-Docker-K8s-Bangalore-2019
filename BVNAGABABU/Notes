@@ -1,3 +1,4 @@
 Running mysql in docker
 docker run --name=mysql -e MYSQL_ROOT_PASSWORD=test -d mysql
-
+docker exec -it mysql /bin/bash
+mysql -uroot -ptest

@@ -695,7 +695,8 @@ https://www.devopsschool.com/tutorial/kubernetes/
 hardway
 https://github.com/kelseyhightower/kubernetes-the-hard-way                                        
 
-54.152.249.148 
+54.152.249.148
+Workder - 
 34.207.96.204
 
 User –root
@@ -741,3 +742,100 @@ kubeadm join 10.123.1.41:6443 --token eefhm0.4h1ktrpornj7n3th \
    47  kubectl get pods -n=kube-system
    48  kubectl get nodes
    49  history
+===========================================================================
+===================================================================
+Working with Nodes?
+======================
+
+GET aka list
+create
+describe
+explain
+edit
+use
+delete
+
+
+Working with Namespaces
+===========================================
+GET aka list Namespaces
+create Namespaces
+        CMD
+        YAML
+describe Namespaces
+explain Namespaces
+edit Namespaces
+use Namespaces
+delete Namespaces
+
+   13  kubectl get nodes -o wide
+   14  kubectl get pods -o wide
+   15  kubectl get pods -o wide -n=kube=system
+   16  kubectl get pods -o wide -n=kube-system
+   17  clear
+   18  kubectl api-resources
+   19  c;ear
+   20  clear
+   21  kubect
+   22  kubectl
+   23  kubectl api-versions
+   24  clear
+   25  kubectl get
+   26  kubectl get -h
+   27  kubectl api-resources
+   28  clear
+   29  kubectl get ns
+   30  clear
+   31  kubectl
+   32  kubectl create
+   33  kubectl create namespace
+   34  kubectl create namespace -h
+   35  clear
+   36  kubectl create namespace -h
+   37  kubectl create namespace dev
+   38  kubectl get ns
+   39  kubectl
+   40  kubectl describe ns dev
+   41  clear
+   42  kubectl describe ns dev
+   43  kubeclt
+   44  kubectl
+   45  clear
+   46  kubectl explain ns
+   47  kubectl explain ns.spec
+   48  kubectl explain ns.spec.finalizers
+   49  kubectl explain ns.metadata
+   50  kubectl explain ns.metadata.namespace
+   51  clear
+   52  kubectl
+   53  kubectl edit ns dev
+   54  clear
+   55  kubectl
+   56  kubectl delete ns dev
+   57  kubectl get ns
+   58  history
+
+
+Working with Pods
+===========================================
+
+Working with ReplicationController
+===========================================
+
+
+Working with Deployment
+===========================================
+
+Working with Labels
+===========================================
+
+Working with Service
+===========================================
+
+
+
+
+
+
+
+

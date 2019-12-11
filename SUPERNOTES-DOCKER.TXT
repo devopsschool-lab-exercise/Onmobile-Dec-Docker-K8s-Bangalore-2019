@@ -636,3 +636,108 @@ https://www.devopsschool.com/blog/setup-artifactory-pro-6-1-0-using-docker-conta
 https://www.devopsschool.com/blog/how-to-setup-docker-registry-repository-using-jfrog-artifactory/
 https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
 https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+
+
+====================================================================================
+====================================================================================
+================================DAY 3====================================================
+Master
+        API server -> POD -> container - Images -> GR
+        ETCD  -> POD -> container - Images -> GR
+        Controller Mgr  -> POD -> container - Images -> GR
+        Schedular  -> POD -> container - Images -> GR
+
+        Kube proxy -> POD -> container - Images -> GR
+        Kubelet - AGENT - TOOL
+        Docker - - DEAMON - TOOL
+Worker
+        Kubelet - AGENT - TOOL
+        Kube proxy
+        Docker - - DEAMON - TOOL
+
+Workstation
+        kubectl -> config
+
+ONE NODE CLUSTOR = minikube
+                IS VM
+                                API server -> POD ->
+                                ETCD  -> POD
+                                Controller Mgr  -> POD
+                                Schedular  -> POD
+
+                                Kube proxy
+                                Kubelet - AGENT - TOOL
+                                Docker - - DEAMON - TOOL
+https://kubernetes.io/docs/setup/learning-environment/minikube/
+minikube
+kubectl
+                $ minikube start
+===================================================================
+kubernetes clustor -
+                PHYSICAL 
+
+                VIRUAL BOXES
+                        PRIVATE CLOUD
+                               SELF MANAGED -
+                                                OPEN STAKE
+                                                VSPHE 
+                        PUBLIC
+                                HOSTED - MASTER IS PAAS
+                                        AWS - EKS
+                                        AZURE - AKS
+                                        GC - GKE
+                                SELF MANAGED - 
+                                        MANUAL WAY using
+                                        - Kubeadm without cloud Integ
+                                        - Kops with cloud integ
+https://www.devopsschool.com/tutorial/kubernetes/
+============================================================================
+hardway
+https://github.com/kelseyhightower/kubernetes-the-hard-way                                        
+
+54.152.249.148 
+34.207.96.204
+
+User –root
+Pass – Onm0bile
+
+Docker 
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+Kubeadm +++++
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.123.1.41:6443 --token eefhm0.4h1ktrpornj7n3th \
+    --discovery-token-ca-cert-hash sha256:e13e6ceb86c32f3b973711186713c900961a7299caa20c7b9770c2ab6269e085
+
+
+   32  kubectl
+   33  kubectl cluster-info
+   34  kubectlget nodes
+   35  kubectl get nodes
+   36  kubectl get pods
+   37  kubectl get ns
+   38  kubectl get pods -n=kube-system
+   39  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   40  kubectl get nodes
+   41  kubectl describe node ip-10-123-1-41.ec2.internal
+   42  kubectl get pods -n=kube-system
+   43  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   44  clear
+   45  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   46  clear
+   47  kubectl get pods -n=kube-system
+   48  kubectl get nodes
+   49  history

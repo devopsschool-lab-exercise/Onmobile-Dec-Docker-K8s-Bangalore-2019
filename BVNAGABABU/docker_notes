@@ -472,3 +472,272 @@ Docker Netwokring
 Docker volume
 
 Docker regirty..
+=======================================================================
+What Docker Image
+        - Collection of Layers.
+What is layer
+        - filesystems
+        - UUID by SHA256
+        - Each layer their Parents
+What is Layer0?
+        - base image
+        - rootfs
+======================================
+What is Container?
+        Whatever we in image we can see in container.
+        - All the layer of images merge into ONE(RW) layer and attached to Rw empty layer(This is a container.)
+        - Union Mounts.
+
+========================================================
+Jenkins
+        openjdk:8-jdk
+                buildpack-deps:stretch-scm
+                        buildpack-deps:stretch-curl
+                                        debian:stretch
+                                                        scratch
+=================================================================
+Base Image
+        JDK5 - TOMCAT 
+        JDK6
+        JDK7
+        JDk8
+        JDK9
+        JDk9 - TOMCAT 5 Apace 2
+                        Apche 3
+             - TOMCAT 6   
+==============================
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8 && Redis && mysql && tomcat ----- IMAGE
+App---- - IMAGE
+
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8  - IMAGE
+&& Redis && - IMAGE
+ mysql &&  - IMAGE
+ tomcat - IMAGE
+App----
+=============
+
+
+How to create image?
+        - Using Existing Container
+        - Dockerfile
+                - EACH LINE WOULD CRAETE ONE LAYER.
+                - NEXT LAYER WOULD BE CREATED FROM A CONTAINER OF PREVIOUS LATYER
+                
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>
+RUN apt-get update
+RUN apt-get install git -y
+
+======================
+rootfs  - 1 Layer
+        - openjdk  - - 2 Layer
+                - Tomcat  - - 3 Layer
+                                - APP   - - 4 Layer
+=======================================================================================
+DAY 2 - 13.233.49.156
+
+
+
+FROM ubuntu 
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>        af2d9cefb7ef
+RUN touch /opt/rajesh1.txt                              913e12e3b57e
+RUN touch /opt/rajesh2.txt                              85b13f506baa
+
+   1  docker pull ubuntu
+    2  sudo systemctl enable docker
+    3  sudo systemctl start docker
+    4  docker pull ubuntu
+    5  clear
+    6  docker images
+    7  docker inspect ubuntu
+    8  clear
+    9  docker history ubuntu
+   10  clear
+   11  cd
+   12  ls
+   13  vi doc1
+   14  docker build -t dock1 -f doc1 .
+   15  docker cleaer
+   16  clear
+   17  docker images
+   18  docker history dock1
+   19  docker inspect dock1
+   20  clear
+   21  docker history dock1
+   22  docker help diff
+   23  clear
+   24  history
+
+   CMD VS ENTRYPOINT
+   ========================
+   Mode of Execution.
+
+CMD 
+        CMD is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holdin - it get exited.
+        CMD be can be replaced any time.
+
+- Shell Mode 
+echo "Rajesh Kumar"
+
+- exec mode
+/bin/echo fsdfs
+
+ENTRYPOINT
+        ENTRYPOINT is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holding - it get exited.
+        ENTRYPOINT CAN NOT BE REPLACED and 
+                        IF PARAMETER password to a ENTRPOINT - it get appended as param to the ENTRYPOINT.
+
+/bin/tini -- /usr/local/bin/jenkins.sh 33333
+
+Lab - 15 mins - https://www.devopsschool.com/tutorial/docker/docker-run-vs-cmd-entrypoint.html
+
+====================================================
+Registry        
+        pub
+                hub.docker.com
+                        Regiter -> USERID n PASS
+                google registry
+        pvt
+                Artifactory
+                nexus
+                ECR
+                registry
+
+docker login https://index.docker.io/v1/
+docker login http//18.7.7.7.7/fdsfsf
+
+docker push imagename
+docker push http//18.7.7.7.7/fdsfsf
+
+  64  docker images
+   65  docker info
+   66  clear
+   67  docker images
+   68  docker login
+   69  docker push dock1
+   70  docker images
+   71  docker tag dock1 scmgalaxy/dock1
+   72  docker images
+   73  docker push scmgalaxy/dock1
+   74  docker tag dock1 scmgalaxy/dock1:v1
+   75  docker images
+   76  docker push scmgalaxy/dock1:v1
+   77  history
+
+https://www.devopsschool.com/blog/how-to-setup-docker-repository-in-artifactory-and-push-pull-images/
+https://www.devopsschool.com/blog/setup-artifactory-pro-6-1-0-using-docker-containtainer/
+https://www.devopsschool.com/blog/how-to-setup-docker-registry-repository-using-jfrog-artifactory/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+
+
+====================================================================================
+====================================================================================
+================================DAY 3====================================================
+Master
+        API server -> POD -> container - Images -> GR
+        ETCD  -> POD -> container - Images -> GR
+        Controller Mgr  -> POD -> container - Images -> GR
+        Schedular  -> POD -> container - Images -> GR
+
+        Kube proxy -> POD -> container - Images -> GR
+        Kubelet - AGENT - TOOL
+        Docker - - DEAMON - TOOL
+Worker
+        Kubelet - AGENT - TOOL
+        Kube proxy
+        Docker - - DEAMON - TOOL
+
+Workstation
+        kubectl -> config
+
+ONE NODE CLUSTOR = minikube
+                IS VM
+                                API server -> POD ->
+                                ETCD  -> POD
+                                Controller Mgr  -> POD
+                                Schedular  -> POD
+
+                                Kube proxy
+                                Kubelet - AGENT - TOOL
+                                Docker - - DEAMON - TOOL
+https://kubernetes.io/docs/setup/learning-environment/minikube/
+minikube
+kubectl
+                $ minikube start
+===================================================================
+kubernetes clustor -
+                PHYSICAL 
+
+                VIRUAL BOXES
+                        PRIVATE CLOUD
+                               SELF MANAGED -
+                                                OPEN STAKE
+                                                VSPHE 
+                        PUBLIC
+                                HOSTED - MASTER IS PAAS
+                                        AWS - EKS
+                                        AZURE - AKS
+                                        GC - GKE
+                                SELF MANAGED - 
+                                        MANUAL WAY using
+                                        - Kubeadm without cloud Integ
+                                        - Kops with cloud integ
+https://www.devopsschool.com/tutorial/kubernetes/
+============================================================================
+hardway
+https://github.com/kelseyhightower/kubernetes-the-hard-way                                        
+
+54.152.249.148 
+34.207.96.204
+
+User –root
+Pass – Onm0bile
+
+Docker 
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+Kubeadm +++++
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.123.1.41:6443 --token eefhm0.4h1ktrpornj7n3th \
+    --discovery-token-ca-cert-hash sha256:e13e6ceb86c32f3b973711186713c900961a7299caa20c7b9770c2ab6269e085
+
+
+   32  kubectl
+   33  kubectl cluster-info
+   34  kubectlget nodes
+   35  kubectl get nodes
+   36  kubectl get pods
+   37  kubectl get ns
+   38  kubectl get pods -n=kube-system
+   39  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   40  kubectl get nodes
+   41  kubectl describe node ip-10-123-1-41.ec2.internal
+   42  kubectl get pods -n=kube-system
+   43  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   44  clear
+   45  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   46  clear
+   47  kubectl get pods -n=kube-system
+   48  kubectl get nodes
+   49  history

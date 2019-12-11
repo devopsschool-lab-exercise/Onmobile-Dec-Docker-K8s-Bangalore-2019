@@ -1305,3 +1305,31 @@ kubectl taint nodes ip-10-123-1-41.ec2.internal node-role.kubernetes.io/master:N
   382  kubectl explain deployment.spec.strategy."Recreate"
   383  kubectl explain deployment.spec.strategy.recreate
   384  history
+=========================================================
+=========================================================
+=========================================================
+
+
+
+  # Update pod 'foo' with the label 'unhealthy' and the value 'true'.
+  kubectl get pod --show-labels
+  kubectl label pods hello-pod unhealthy=true
+
+  # Update pod 'foo' with the label 'status' and the value 'unhealthy', overwriting any existing value.
+  kubectl label pods hello-pod unhealthy=true
+  kubectl label --overwrite pods hello-pod unhealthy=false
+
+  # Update all pods in the namespace
+  kubectl label pods --all status=unhealthy
+
+  # Update a pod identified by the type and name in "pod.json"
+  kubectl label -f pod.json status=unhealthy
+
+  # Update pod 'foo' by removing a label named 'bar' if it exists.
+  # Does not require the --overwrite flag.
+  kubectl label pods hello-pod app-
+
+
+https://www.devopsschool.com/tutorial/kubernetes/kubernetes-resource-objects/label-example-programs.html
+https://www.devopsschool.com/tutorial/kubernetes/labs/lab-12-kubernetes-labels.html
+https://www.devopsschool.com/blog/working-with-kubernetes-cluster-using-kubectl-part-7-labels/

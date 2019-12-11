@@ -974,3 +974,80 @@ kubectl attach hello-pod
    82  kubectl delete pod hell-pod
    83  kubectl delete pod hello-pod
    84  kubectl delete -f pod.yaml -n=dev
+==================================================
+==================================================
+Working with Replication Controller.
+===============
+Replication - 1 to many
+Controller - Controller make sure desire must match wuth Actual.
+
+
+
+GET aka list Replication Controller
+create Replication Controller
+        CMD
+        YAML
+describe Replication Controller
+explain Replication Controller
+edit Replication Controller
+use Replication Controller
+        Replication
+        Controller
+delete Replication Controller
+=========================
+
+
+rc.yaml
+===========================
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2   
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: nginx
+        ports:
+        - containerPort: 80
+
+  111  ls
+  112  kubectl get rc
+  113  kubectl
+  114  kubectl api-resources | grep -cont
+  115  kubectl api-resources | grep -i cont
+  116  clearr
+  117  kubectl get rc
+  118  kubectl get rc -n=dev
+  119  clear
+  120  kubectl create
+  121  kubectl api-resources | grep -i cont
+  122  clear
+  123  vi rc.yaml
+  124  kubectl create -f rc.yaml
+  125  kubectl explain rc
+  126  kubectl explain rc.spec
+  127  kubectl explain rc.spec.spec
+  128  clear
+  129  kubeclt get rc
+  130  kubectl
+  131  kubectl get rc
+  132  clear
+  133  kubectl get rc
+  134  kubectl describe rc hello-rc
+  135  clear
+  136  kubectl get pods
+  137  kubectl edit rc hello-rc
+  138  kubectl get pods
+  139  kubectl getrc
+  140  kubectl get rc
+  141  kubectl get pods
+  142  kubectl delete pod hello-rc-fs5wd hello-rc-wqmd2
+  143  kubectl get pods
+  144  history
+kubectl delete -f rc.yaml

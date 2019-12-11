@@ -816,8 +816,7 @@ delete Namespaces
    58  history
 
 
-Working with Pods
-===========================================
+
 
 Working with ReplicationController
 ===========================================
@@ -841,6 +840,7 @@ ERROR
 vi /etc/sysctl.conf
 # For more information, see sysctl.conf(5) and sysctl.d(5).
 net.bridge.bridge-nf-call-iptables = 1 
+
 sudo sysctl -p
 
 
@@ -848,3 +848,129 @@ How to reset?
 https://www.devopsschool.com/blog/how-to-delete-remove-clean-existing-corrupted-or-old-kubeadm-kubernetes-clusters-setup/
 
 
+===================================================================================
+===================================================================================
+
+Working with Pods
+===========================================
+GET aka list
+create
+        CMD
+        YAML
+                kubectl create -f filename
+
+pod.yaml
+-------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels: 
+    app: webserver
+spec:
+  containers:
+  - name: hello-ctr
+    image: nginx
+    ports:
+    - containerPort: 80
+
+    
+
+describe
+explain
+edit
+        CMD
+        FILE
+use
+        How to get inside a POD.
+        exec
+        attach
+        cp
+        logs
+
+        curl http://podip
+
+delete
+        CMD
+        yaml
+
+
+  55  clear
+   56  kubectl get pods -n=kube-system
+   57  kubectl get nodes
+   58  history
+   59  clear
+   60  kubectl getpods
+   61  kubectl get pods
+   62  kubectl create ns dev
+   63  kubectl get pods -n=dev
+   64  kubectl create
+   65  clear
+   66  kubectl
+   67  kubectl api-resources
+   68  kubectl api-versions
+   69  clear
+   70  kubectl explain pod
+   71  kubectl explain pod.spec
+   72  kubectl explain pod.spec.containers
+   73  clear
+   74  cd
+   75  ls
+   76  vi pod.yaml
+   77  kubctl create -f pod.yaml
+   78  kubectl create -f pod.yaml
+   79  kubectl create -f pod.yaml -n=dev
+   80  kubectl get pods
+   81  kubectl get pods -n=dev
+   82  kubectl get pods  --all-namespaces
+   83  kubectl get pods  --all-namespaces -o wide
+   84  clear
+   85  kubectl get pods
+   86  kubectl describe pod hello-pod
+   87  kubectl describe pod hello-pod -n=dev
+   88  clear
+   89  kubectl describe pod hello-pod -n=dev
+   90  clear
+   91  kubectl get pod
+   92  kubectl edit pod hello-pod
+   93  kubectl get pod
+   94  kubectl edit pod hello-pod
+   95  ls
+   96  vi pod.yaml
+   97  kubectl create -f pod.yaml
+   98  kubectl apply -f pod.yaml
+   99  kubectl describe pod hello-pod
+  100  clear
+  101  kubectl
+  102  clear
+  103  ls
+  104  kubectl get pods
+  105  kubectl exec -it hello-pod /bin/bash
+  106  history
+kubectl attach hello-pod
+
+  59  kubectl get pods -o wide
+   60  curl http://10.44.0.1
+   61  clear
+   62  kubectl get pods
+   63  kubectl describe pod hello-pod
+   64  clear
+   65  docker ps
+   66  kubectl describe pod hello-pod
+   67  docker ps
+   68  docker ps | grep 980
+   69  kubectl describe pod hello-pod
+   70  clear
+   71  ls
+   72  kubectl get pods
+   73  touch rajesh.txt
+   74  ls
+   75  kubectl cp rajesh.txt hello-pod:/opt
+   76  kubectl exec hello-pod ls /oprt
+   77  kubectl exec hello-pod ls /opt
+   78  kubectl logs hello-pod
+   79  kubectl
+
+   82  kubectl delete pod hell-pod
+   83  kubectl delete pod hello-pod
+   84  kubectl delete -f pod.yaml -n=dev

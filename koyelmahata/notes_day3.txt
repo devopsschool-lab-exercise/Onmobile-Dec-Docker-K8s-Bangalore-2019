@@ -1,141 +1,70 @@
-
 ================================DAY 3====================================================
-
 Master
-
         API server -> POD -> container - Images -> GR
-
         ETCD  -> POD -> container - Images -> GR
-
         Controller Mgr  -> POD -> container - Images -> GR
-
         Schedular  -> POD -> container - Images -> GR
 
-
-
         Kube proxy -> POD -> container - Images -> GR
-
         Kubelet - AGENT - TOOL
-
         Docker - - DEAMON - TOOL
-
 Worker
-
         Kubelet - AGENT - TOOL
-
         Kube proxy
-
         Docker - - DEAMON - TOOL
-
-
 
 Workstation
-
         kubectl -> config
 
-
-
 ONE NODE CLUSTOR = minikube
-
                 IS VM
-
                                 API server -> POD ->
-
                                 ETCD  -> POD
-
                                 Controller Mgr  -> POD
-
                                 Schedular  -> POD
 
-
-
                                 Kube proxy
-
                                 Kubelet - AGENT - TOOL
-
                                 Docker - - DEAMON - TOOL
-
 https://kubernetes.io/docs/setup/learning-environment/minikube/
-
 minikube
-
 kubectl
-
                 $ minikube start
-
 ===================================================================
-
 kubernetes clustor -
-
                 PHYSICAL 
 
-
-
                 VIRUAL BOXES
-
                         PRIVATE CLOUD
-
                                SELF MANAGED -
-
                                                 OPEN STAKE
-
                                                 VSPHE 
-
                         PUBLIC
-
                                 HOSTED - MASTER IS PAAS
-
                                         AWS - EKS
-
                                         AZURE - AKS
-
                                         GC - GKE
-
                                 SELF MANAGED - 
-
                                         MANUAL WAY using
-
                                         - Kubeadm without cloud Integ
-
                                         - Kops with cloud integ
-
 https://www.devopsschool.com/tutorial/kubernetes/
-
 ============================================================================
-
 hardway
-
 https://github.com/kelseyhightower/kubernetes-the-hard-way                                        
 
-
-
 54.152.249.148
-
 Workder - 
-
 34.207.96.204
-
-
 
 User –root
 
-Pass – Onm0bile
-
-
 
 Docker 
-
 https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
 
-
-
 Kubeadm +++++
-
 https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
-
-
-
-Your Kubernetes control-plane has initialized successfully!
 
 To start using your cluster, you need to run the following as a regular user:
 
@@ -149,223 +78,588 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 10.123.1.39:6443 --token i9m9ta.b59wi061fc4u2me3 \
-    --discovery-token-ca-cert-hash sha256:2ad06066d7af4edd2783c7edd2c568d391a3d048f6d410832f05eae94958c9a0
-
-
-
+kubeadm join 10.123.1.41:6443 --token eefhm0.4h1ktrpornj7n3th \
+    --discovery-token-ca-cert-hash sha256:e13e6ceb86c32f3b973711186713c900961a7299caa20c7b9770c2ab6269e085
 
 
    32  kubectl
-
    33  kubectl cluster-info
-
    34  kubectlget nodes
-
    35  kubectl get nodes
-
    36  kubectl get pods
-
    37  kubectl get ns
-
    38  kubectl get pods -n=kube-system
-
    39  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
-
    40  kubectl get nodes
-
    41  kubectl describe node ip-10-123-1-41.ec2.internal
-
    42  kubectl get pods -n=kube-system
-
    43  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
-
    44  clear
-
    45  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-
    46  clear
-
    47  kubectl get pods -n=kube-system
-
    48  kubectl get nodes
-
    49  history
-
 ===========================================================================
-
 ===================================================================
-
 Working with Nodes?
-
 ======================
 
-
-
 GET aka list
-
 create
-
 describe
-
 explain
-
 edit
-
 use
-
 delete
 
 
-
-
-
 Working with Namespaces
-
 ===========================================
-
 GET aka list Namespaces
-
 create Namespaces
-
         CMD
-
         YAML
-
 describe Namespaces
-
 explain Namespaces
-
 edit Namespaces
-
 use Namespaces
-
 delete Namespaces
 
-
-
    13  kubectl get nodes -o wide
-
    14  kubectl get pods -o wide
-
    15  kubectl get pods -o wide -n=kube=system
-
    16  kubectl get pods -o wide -n=kube-system
-
    17  clear
-
    18  kubectl api-resources
-
    19  c;ear
-
    20  clear
-
    21  kubect
-
    22  kubectl
-
    23  kubectl api-versions
-
    24  clear
-
    25  kubectl get
-
    26  kubectl get -h
-
    27  kubectl api-resources
-
    28  clear
-
    29  kubectl get ns
-
    30  clear
-
    31  kubectl
-
    32  kubectl create
-
    33  kubectl create namespace
-
    34  kubectl create namespace -h
-
    35  clear
-
    36  kubectl create namespace -h
-
    37  kubectl create namespace dev
-
    38  kubectl get ns
-
    39  kubectl
-
    40  kubectl describe ns dev
-
    41  clear
-
    42  kubectl describe ns dev
-
    43  kubeclt
-
    44  kubectl
-
    45  clear
-
    46  kubectl explain ns
-
    47  kubectl explain ns.spec
-
    48  kubectl explain ns.spec.finalizers
-
    49  kubectl explain ns.metadata
-
    50  kubectl explain ns.metadata.namespace
-
    51  clear
-
    52  kubectl
-
    53  kubectl edit ns dev
-
    54  clear
-
    55  kubectl
-
    56  kubectl delete ns dev
-
    57  kubectl get ns
-
    58  history
 
 
 
 
-
-Working with Pods
-
-===========================================
-
-
-
 Working with ReplicationController
-
 ===========================================
-
-
-
 
 
 Working with Deployment
-
 ===========================================
-
-
 
 Working with Labels
-
 ===========================================
-
-
 
 Working with Service
-
 ===========================================
+
+
+ERROR
+--------------------------------------------------
+[ERROR FileContent--proc-sys-net-bridge-bridge-nf-call-iptables]:
+--------------------------------------------------
+
+vi /etc/sysctl.conf
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+net.bridge.bridge-nf-call-iptables = 1 
+
+sudo sysctl -p
+
+
+How to reset?
+https://www.devopsschool.com/blog/how-to-delete-remove-clean-existing-corrupted-or-old-kubeadm-kubernetes-clusters-setup/
+
+
+===================================================================================
+===================================================================================
+
+Working with Pods
+===========================================
+GET aka list
+create
+        CMD
+        YAML
+                kubectl create -f filename
+
+pod.yaml
+-------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels: 
+    app: webserver
+spec:
+  containers:
+  - name: hello-ctr
+    image: nginx
+    ports:
+    - containerPort: 80
+
+    
+
+describe
+explain
+edit
+        CMD
+        FILE
+use
+        How to get inside a POD.
+        exec
+        attach
+        cp
+        logs
+
+        curl http://podip
+
+delete
+        CMD
+        yaml
+
+
+  55  clear
+   56  kubectl get pods -n=kube-system
+   57  kubectl get nodes
+   58  history
+   59  clear
+   60  kubectl getpods
+   61  kubectl get pods
+   62  kubectl create ns dev
+   63  kubectl get pods -n=dev
+   64  kubectl create
+   65  clear
+   66  kubectl
+   67  kubectl api-resources
+   68  kubectl api-versions
+   69  clear
+   70  kubectl explain pod
+   71  kubectl explain pod.spec
+   72  kubectl explain pod.spec.containers
+   73  clear
+   74  cd
+   75  ls
+   76  vi pod.yaml
+   77  kubctl create -f pod.yaml
+   78  kubectl create -f pod.yaml
+   79  kubectl create -f pod.yaml -n=dev
+   80  kubectl get pods
+   81  kubectl get pods -n=dev
+   82  kubectl get pods  --all-namespaces
+   83  kubectl get pods  --all-namespaces -o wide
+   84  clear
+   85  kubectl get pods
+   86  kubectl describe pod hello-pod
+   87  kubectl describe pod hello-pod -n=dev
+   88  clear
+   89  kubectl describe pod hello-pod -n=dev
+   90  clear
+   91  kubectl get pod
+   92  kubectl edit pod hello-pod
+   93  kubectl get pod
+   94  kubectl edit pod hello-pod
+   95  ls
+   96  vi pod.yaml
+   97  kubectl create -f pod.yaml
+   98  kubectl apply -f pod.yaml
+   99  kubectl describe pod hello-pod
+  100  clear
+  101  kubectl
+  102  clear
+  103  ls
+  104  kubectl get pods
+  105  kubectl exec -it hello-pod /bin/bash
+  106  history
+kubectl attach hello-pod
+
+  59  kubectl get pods -o wide
+   60  curl http://10.44.0.1
+   61  clear
+   62  kubectl get pods
+   63  kubectl describe pod hello-pod
+   64  clear
+   65  docker ps
+   66  kubectl describe pod hello-pod
+   67  docker ps
+   68  docker ps | grep 980
+   69  kubectl describe pod hello-pod
+   70  clear
+   71  ls
+   72  kubectl get pods
+   73  touch rajesh.txt
+   74  ls
+   75  kubectl cp rajesh.txt hello-pod:/opt
+   76  kubectl exec hello-pod ls /oprt
+   77  kubectl exec hello-pod ls /opt
+   78  kubectl logs hello-pod
+   79  kubectl
+
+   82  kubectl delete pod hell-pod
+   83  kubectl delete pod hello-pod
+   84  kubectl delete -f pod.yaml -n=dev
+==================================================
+==================================================
+Working with Replication Controller.
+===============
+Replication - 1 to many
+Controller - Controller make sure desire must match wuth Actual.
+
+
+
+GET aka list Replication Controller
+create Replication Controller
+        CMD
+        YAML
+describe Replication Controller
+explain Replication Controller
+edit Replication Controller
+use Replication Controller
+        Replication
+        Controller
+delete Replication Controller
+=========================
+
+
+rc.yaml
+===========================
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2   
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: nginx
+        ports:
+        - containerPort: 80
+
+  111  ls
+  112  kubectl get rc
+  113  kubectl
+  114  kubectl api-resources | grep -cont
+  115  kubectl api-resources | grep -i cont
+  116  clearr
+  117  kubectl get rc
+  118  kubectl get rc -n=dev
+  119  clear
+  120  kubectl create
+  121  kubectl api-resources | grep -i cont
+  122  clear
+  123  vi rc.yaml
+  124  kubectl create -f rc.yaml
+  125  kubectl explain rc
+  126  kubectl explain rc.spec
+  127  kubectl explain rc.spec.spec
+  128  clear
+  129  kubeclt get rc
+  130  kubectl
+  131  kubectl get rc
+  132  clear
+  133  kubectl get rc
+  134  kubectl describe rc hello-rc
+  135  clear
+  136  kubectl get pods
+  137  kubectl edit rc hello-rc
+  138  kubectl get pods
+  139  kubectl getrc
+  140  kubectl get rc
+  141  kubectl get pods
+  142  kubectl delete pod hello-rc-fs5wd hello-rc-wqmd2
+  143  kubectl get pods
+  144  history
+kubectl delete -f rc.yaml
+
+==================================================
+===================DEPLOYMENT===============================
+What is Deployment?
+        replicasets + deployment controller
+        Can replicate + Desire to ACTUAL
+        Versioning
+        ROllout
+        Rollback
+        
+GET aka list DEPLOYMENT
+create DEPLOYMENT
+        CMD
+        YAML
+describe DEPLOYMENT
+explain DEPLOYMENT
+edit DEPLOYMENT
+use DEPLOYMENT
+        replicasets + deployment controller
+        Can replicate + Desire to ACTUAL
+        Versioning
+        ROllout
+
+        Rollback
+delete DEPLOYMENT
+
+Pass – Onm0bile
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: null
+  generation: 1
+  labels:
+    app: my-depdsdasdasd
+  name: my-dep
+  selfLink: /apis/apps/v1/namespaces/default/deployments/my-dep
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 20
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: my-dep1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-dep1
+    spec:
+      containers:
+      - image: scmgalaxy/nginx-devopsschoolv2
+        imagePullPolicy: Always
+        name: nginx
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+
+
+Image
+scmgalaxy/nginx-devopsschoolv1
+scmgalaxy/nginx-devopsschoolv2
+
+
+  163  kubectl api-resources
+  164  kubectl api-resources | grep dep
+  165  clear
+  166  kubectl api-versions
+  167  clear
+  168  kubectl get deploy
+  169  kubectl
+  170  kubectl create
+  171  clear
+  172  mkubectl create deploy
+  173  kubectl create deploy
+  174  clear
+  175  kubectl create deployment my-dep --image=nginx
+  176  kubectl get deploy
+  177  kubectl create deploy
+  178  clear
+  179  kubectl get deploy
+  180  kubectl explain deploy
+  181  kubectl explain deploy.spec
+  182  clear
+  183  kubectl get deploy
+  184  kubectl describe deploy my-dep
+  185  clear
+  186  kubectl edit deploy my-dep
+  187  kubectl get pods
+  188  kubectl describe deploy my-dep
+  189  clear
+  190  kubectl et rs
+  191  kubectl get rs
+  192  kubectl describe rs my-dep-6589b6f7dc
+  193  kubectl describe deploy my-dep
+  194  kubectl get pods
+  195  kubectl describe pod my-dep-6589b6f7dc-k2xv9
+  196  clear
+  197  kubectl get pods
+  198  kubectl delete pod my-dep-6589b6f7dc-k2xv9
+  199  kubectl get pods
+  200*
+  201  ls
+  202  kubectl get deploy
+  203  kubectl get deploy my-dep
+  204  kubectl get deploy my-dep -o yaml
+  205  kubectl get deploy my-dep -o yaml -export
+  206  kubectl get deploy my-dep -o yaml --export
+  207  kubectl get deploy my-dep -o yaml --export >> dep1.yaml
+  208  more dep1.yaml
+  209  kubectl get deploy my-dep -o yaml --export
+  210  history
+
+  222  kubectl get pods
+  223  clear
+  224  kubectl
+  225  kubectl scale
+  226  clear
+  227  kubectl get deploy
+  228  kubectl scale --replicas=40 deploy/my-dep
+  229  kubectl get pods
+  230  clear
+  231  kubectl get pods
+  232  clear
+  233  kubectl get pods
+  234  clear
+  235  kubectl scale --replicas=4 deploy/my-dep
+  236  kubectl get pods
+  237  clear
+  238  history
+
+  238  history
+  239  clear
+  240  ls
+  241  kubectl
+  242  clear
+  243  kubectl rollout
+  244  kubectl rollout history deployments my-dep
+  245  clear
+  246  kubectl get pods
+  247  history
+  248   kubectl scale --replicas=2 deploy/my-dep
+  249  clear
+  250  kubectl get pods
+  251  kubectl get pods -o wide
+  252  curl http://10.44.0.1
+  253  curl http://10.44.0.2
+  254  cler
+  255  ls
+  256  vi dep3.yaml
+  257  kubectl apply -f dep3.yaml
+  258  kubectl get pods -o wide
+  259  clear
+  260  history
+  261   kubectl scale --replicas=2 deploy/my-dep
+  262  clear
+  263  kubectl get pods -o wide
+  264  curl http://10.44.0.3
+  265  curl http://10.44.0.22
+  266  history
+  267  kubectl rollout history deployments my-dep
+  268  clear
+  269  history
+  270  clear
+  271  kubectl rollout history deployments my-dep
+  272  kubectl rollout
+  273  kubectl rollout undo
+  274  kubectl rollout undo -h
+  275  clear
+  276  kubectl rollout
+  277  kubectl get pods
+  278  history
+
+
+
+kubectl rollout undo deploy/my-dep --to-revision=1
+kubectl rollout status deploy/my-dep 
+
+
+kubectl taint nodes ip-10-123-1-41.ec2.internal node-role.kubernetes.io/master:NoSchedule-
+
+
+  279  cler
+  280  ls
+  281  kubectl scale --replicas=50 deploy/my-dep
+  282  clear
+  283  kubectl get pods
+  284  clear
+  285  kubectl get pods
+  286  clear
+  287  kubectl get pods
+  288  clear
+  289  kubectl get pods
+  290  clear
+  291  kubectl get pods
+  292  clear
+  293  kubectl get pods
+  294  cler
+  295  clear
+  296  kubectl get pods
+  297  history
+  298  kubectl scale --replicas=100 deploy/my-dep
+  299  clear
+  300  kubectl get pods
+  301  clear
+  302  kubectl get pods
+  303  watch kubectl get pods
+  304  kubectl scale --replicas=150 deploy/my-dep
+  305  watch kubectl get pods
+  306  kubectl get pods | grep Pending |
+  307  kubectl get pods | grep Pending | wc -l
+  308  kubectl get nodes
+  309  kubectl describe node ip-10-123-1-41.ec2.internal
+  310  clear
+  311  kubectl get nodes
+  312  kubectl describe node ip-10-123-1-41.ec2.internal
+  313  clear
+  314  kubectl taint nodes ip-10-123-1-41.ec2.internal node-role.kubernetes.io/master:NoSchedule-
+  315  watch kubectl get pods | grep Pending | wc -l
+  316  kubectl get pods | grep Pending | wc -l
+  317  kubectl get pods
+  318  kubectl get pods -o wide
+  319  curl http://10.32.0.44
+  320  clear
+  321  kubectl rollout undo deploy/my-dep --to-revision=1
+  322  kubectl rollout status deploy/my-dep
+  323  clear
+  324  kubectl get pod -ow ide
+  325  kubectl get pod -o wide
+  326  curl http://10.32.0.25
+  327  history
+
+  377  kubectl explain deployment
+  378  kubectl explain deployment.deployment
+  379  kubectl explain deployment.spec.deployment
+  380  kubectl explain deployment.spec.strategy
+  381  kubectl explain deployment.spec.strategy.rollingUpdate
+  382  kubectl explain deployment.spec.strategy."Recreate"
+  383  kubectl explain deployment.spec.strategy.recreate
+  384  history

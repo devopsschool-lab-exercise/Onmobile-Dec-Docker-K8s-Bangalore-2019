@@ -1077,7 +1077,6 @@ use DEPLOYMENT
         Rollback
 delete DEPLOYMENT
 
-Pass – Onm0bile
 
 
 apiVersion: apps/v1
@@ -1358,8 +1357,7 @@ kubectl create service nodeport my-ns1 --tcp=5678:80
 
 kubectl label --overwrite svc my-ns1 app=my-cs
 
-http://52.90.11.112:30387/
-3.81.91.243:30387
+
 
  507  kubectl create -f pod.yaml
   508  kubectl create -f pod1.yaml
@@ -1422,5 +1420,133 @@ kubectl run nginx --image=scmgalaxy/nginx-devopsschoolv1
  kubectl expose deploy nginx --port=8080 --target-port=80 --type=LoadBalancer
  31238
 
- 13.127.42.82:31238
- 15.206.151.185:31238
+
+
+http://52.90.11.112:30387/
+3.81.91.243:30387
+Pass – Onm0bile
+
+======================================================
+Docker Volume
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+        - volume - would be created in /var/lib/docker/volumens
+        - mountfs - in host machine anywhere?
+        - tmpfs - memory
+
+ 586  docker volume ls
+  587  clear
+  588  docker volume
+  589  docker volume ls
+  590  docker volume rajesh
+  591  docker volume create rajesh
+  592  clear
+  593  docker volume ls
+  594  cd /var/lib/docker/volumes/
+  595  ls
+  596  cd rajesh/
+  597  ls
+  598  cd _data/
+  599  ls
+  600  clear
+  601  ls
+  602  docker run -itd -v rajesh:/opt/raju ubuntu
+  603  docker ps
+  604  clear
+  605  docker exec 718f5e73c4f0 df -kh
+  606  docker attach 718f5e73c4f0
+  607  docker ps
+  608  ls
+  609  pwd
+  610  cd ..
+  611  ls
+  612  cd ..
+  613  ls
+  614  docker rm 718f5e73c4f0
+  615  docker stop 718f5e73c4f0
+  616  docker rm 718f5e73c4f0
+  617  ls
+  618  cd rajesh/
+  619  ls
+  620  cd _data/
+  621  ls
+  622  docker run -itd -v rajesh:/opt/raju ubuntu
+  623  docker exec db4aed55a39f3cad1201cd28e1f2638fef65787bf5db6f61d74dbf69208bd094 ls /opt/raju
+  624  cd /opt/
+  625  clear
+  626  ls
+  627  mkdir mybackup
+  628  ls
+  629  cd mybackup/
+  630  pwd
+  631  docker run -itd -v /opt/mybackup:/opt/raju ubuntu
+  632  docker attach d35ce92a8a9cc460a541e67e93a30583ca2bdf871677589c87f955aa4e320696
+  633  ls
+  634  history
+
+=============================================================
+
+
+Image
+scmgalaxy/nginx-devopsschoolv1
+scmgalaxy/nginx-devopsschoolv2
+
+
+empydirs
+https://www.devopsschool.com/blog/kubernetes-volume-emptydir-explained-with-examples/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: scmgalaxy/nginx-devopsschoolv1
+    name: test-container
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+
+hostpath
+https://www.devopsschool.com/blog/kubernetes-volume-hostpath-explained-with-examples/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: scmgalaxy/nginx-devopsschoolv1
+    name: test-container
+    volumeMounts:
+    - mountPath: /test-pd
+      name: test-volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      # directory location on host
+      path: /data
+      # this field is optional
+      type: DirectoryOrCreate
+
+nfs
+=================================
+
+pv
+
+pvc
+
+storageclass - 
+
+
+
+
+
+
+
+
+
+
+

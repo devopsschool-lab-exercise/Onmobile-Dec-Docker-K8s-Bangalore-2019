@@ -1533,15 +1533,139 @@ spec:
 
 nfs
 =================================
+https://www.devopsschool.com/blog/setup-nfs-server-and-use-inside-a-kubernetes-pods-in-rhel-centos7/
+
+--------------------------------------------------------------------
+$ yum update
+$ rpm -qa | grep nfs-utils
+$ yum install nfs-utils rpcbind
+$ systemctl enable nfs-server
+$ systemctl enable rpcbind
+$ systemctl enable nfs-lock
+$ systemctl enable nfs-idmap
+$ systemctl start rpcbind
+$ systemctl start nfs-server
+$ systemctl start nfs-lock
+$ systemctl start nfs-idmap
+$ systemctl status nfs
+$ mkdir /onmobile
+$ chmod 1777 /onmobile
+$ vi /etc/exports
+------------------
+/onmobile *(rw)
+
+exportfs -r
+systemctl restart nfs-server
+/onmobile
+
 
 pv
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+https://www.devopsschool.com/blog/kubernetes-persistentvolume-and-persistentvolumeclaim-using-nfs-volume-types/
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001 
+spec:
+  capacity:
+    storage: 1Gi 
+  accessModes:
+  - ReadWriteOnce 
+  nfs: 
+    path: /onmobile 
+    server: 10.123.1.41
+  persistentVolumeReclaimPolicy: Recycle
+
 
 pvc
 
-storageclass - 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim1
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: 1Gi 
+
+ 
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-pv-pod1
+spec:
+  containers:
+    - name: task-pv-container
+      image: scmgalaxy/nginx-devopsschoolv1
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: nfs-claim1
+==============================================
+configmap
+https://www.devopsschool.com/blog/kubernetes-configmap-explained-using-example/
 
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld-nginx
+  labels:
+    app: helloworld-nginx
+spec:
+  containers:
+  - name: nginx
+    image: scmgalaxy/nginx-devopsschoolv1
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/nginx/conf.d
+  - name: k8s-demo
+    image: wardviaene/k8s-demo
+    ports:
+    - containerPort: 3000
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+        items:
+        - key: imp.config
+          path: myconfo.conf
 
+          
+ 619  vi imp.config
+  620  kubectl create configmap my-config --from-file=imp.config
+  621  kubectl get cm
+  622  kubectl describe cm my-config
+  623  c;ear
+  624  clear
+  625  ls
+  626  kubectl get cm
+  627  kubectl describe cm my-config
+  628  kubectl get cm
+  629  clear
+  630  ls
+  631  vi pv1.yaml
+  632  kubectl create pv1.yaml
+  633  kubectl create -f pv1.yaml
+  634  kubectl get pods
+  635  ckear
+  636  kubectl get pods
+  637  kubectl exec helloworld-nginx ls  //etc/nginx/conf.d
+  638  kubectl exec helloworld-nginx ls  /etc/nginx/conf.d
+  639  kubectl exec helloworld-nginx more /etc/nginx/conf.d/myconfo.conf
+  640  history
 
 
 

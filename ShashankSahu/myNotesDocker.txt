@@ -1,1 +1,1668 @@
-Docker
+DevOps
+------------------------
+        Each commit must go to release.
+        Cost reudction.
+        Quality - REDFINED
+        ==========================
+==============================================
+Prod - OnMobX        
+Mgr - Mgrx.
+=============================
+Transition - 2 WEEK =====> 20 MINS.
+==================================================
+SDLC
+----------------------------
+Architect - JIRA - Confulence
+Dev - 10 FEA - 10 DEV
+            Code Integ - Gitlab
+            Code Ana - 
+                        PEER CODE REVIEW - 
+                        Static Code Ana  - SonarQube
+            Build - Maven - Gradle
+            Unit TESTING - Junit
+            Package mgmt -
+                            SYSTEM
+                            APP -
+            Archive tool - Artifactory
+            --------------------------------------
+            OnMobX56.7 ----> 100 BOXES
+            -------------------------------------
+            50 L - 50 W
+            50 N - 50 A
+            25 T - 25 WL - 25 -JBs - 25 WS
+            25 MY  - 25 MS - 25 OR - 25 PS
+            100 PRO - 
+            -------------------------------------
+            1 DEP -> 9 mins.
+            100 - DEP -> 9 mins?
+                ---------------------
+                HOW?- Parrell DEP
+            -----------------------------------------
+            Code -> Ansible -> Puppet- > Chef - >Salt
+            GUI -> Octopus Dep - Udeploy
+            -------------------------------------
+            9 mins + 1 mins(100 SERVER) --- 10 MINS.
+            =====================================================
+            100000 INsarnce - 100 DIFF Config ---> 1 SEC.
+            -----------
+                Container -> Docker + Kubernetes
+
+            AT
+
+            Code Coverage - 
+            ------------------------------
+            =========================================================================
+            PLAN->code->Ana->UT->Pack-Archie->Dep2QA->AT->CC
+            JIRA_>GIt->SQ ->Junit>Jar->Art ->Ansible->SEL->Jacoco
+            ------------------------------------------------------
+                                JENKINS
+                                cont - Integ
+                                Auto Build
+                                Auto Testing
+                                Imm Feedback
+            ======================================================
+            ======================================================================
+            Prod 
+                    Dep2Prod
+                    Monitoring -
+                            INFRA - Zabbix
+                            Log - ELK - 
+                            Performance - NewRelic
+
+https://www.devopsschool.com/path
+===========================================================================================
+Username: devops@rajeshkumar.xyz 
+Pass: v78qbka7
+============================================================================================
+Onmobile-Dec-Docker-K8s-Bangalore-2019
+
+http://bit.ly/2LCBCTF
+
+========================================================
+What is Docker?
+    Container mgmt tool
+    Free
+    OS
+    Version
+            - Docker CE
+            - DOCKER EE
+
+
+What is Container?
+    USER SPACE with their own
+                        - NET NS
+                        - mNT NS
+                        - PMAP NS
+                                    Powered by Docker
+
+                    with a help of KERNAL NS.
+ 15  history
+   16  clear
+   17  ps -eaf | grep docker
+   18  ps -eaf | grep docker | wc -l
+   19  docker run -itd ubuntu
+   20  docker run -itd ubuntu
+   21  ps -eaf | grep docker | wc -l
+   22  docker run -itd ubuntu
+   23  ps -eaf | grep docker | wc -l
+   24  clear
+   25  ps -eaf | grep docker
+   26  clear
+   27  clear
+   28  docker ps
+   29  docker inspect 22719b53dc0e | grep -i ip
+   30  docker inspect b2876a4c0ce0 | grep -i ip
+   31  docker inspect 71aee8e1fa4c | grep -i ip
+   32  clear
+   33  ls
+   34  docker ps
+   35  docker exec 22719b53dc0e df -kh
+   36  docker exec b2876a4c0ce0 df -kh
+   37  docker exec 71aee8e1fa4c df -kh
+   38  clear
+   39  ls
+   40  docker ps
+   41  docker exec 22719b53dc0e touch /opt/rajesh.txt
+   42  docker exec 22719b53dc0e ls /opt/
+   43  docker exec b2876a4c0ce0 ls /opt/
+   44  docker exec 71aee8e1fa4c ls /opt/
+   45  clear
+   46  ps -eaf
+   47  clear
+   48  docker ps
+   49  docker exec 22719b53dc0e ps -eaf
+   50  docker exec b2876a4c0ce0 ps -eaf
+
+Docker Arch
+Humen -> Docker Client --> Docker Deamon --> KERNAL
+-----------------------------------------------------
+                Docker Engine
+
+Component of Docker?
+    - Dokcker Engine    
+            - Docker Client --> Docker Deamon
+    - Docker Image
+            - File system + Apps
+    - Docker Container
+            - What you have in image - you see in Container
+    - Docker Registry and repo
+
+=======================================
+How to install Docker?
+13.233.105.67
+=====================
+RHEL-7.5_HVM_GA-20180322-x86_64-1-Hourly2-GP2 (ami-5b673c34)
+
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+  1  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    2  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    3  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    4  sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    5  sudo yum install -y docker-ce
+    6  docker -v
+    7  sudo systemctl enable docker
+    8  sudo systemctl start docker
+    9  clear
+   10  which docker
+   11  ps -eaf | grep docker
+   12  docker info
+   13  clear
+   14  ls
+   15  history
+
+Q1 - Validate it - DONE
+
+
+WORKING WIth Container - Docker Workflow
+=================================================
+create -> start -> stop -> start -> restart -> pause -> unpause -> stop -> rm
+
+ 51  history
+   52  clear
+   53  docker ps
+   54  docker stop 22719b53dc0e b2876a4c0ce0 71aee8e1fa4c
+   55  docker ps
+   56  docker ps -a
+   57  docker rm 22719b53dc0e b2876a4c0ce0 71aee8e1fa4c
+   58  clear
+   59  docker -sA
+   60  clear
+   61  docker ps -a
+   62  docker create jenkins
+   63  clear
+   64  docker ps
+   65  docker ps -a
+   66  docker start 0b6cbacb4750
+   67  docker ps a
+   68  docker ps -a
+   69  docker stop 0b6cbacb4750
+   70  docker ps -a
+   71  clear
+   72  docker ps -a
+   73  docker start 0b6cbacb4750
+   74  docker ps a-
+   75  docker ps -a
+   76  docker restart 0b6cbacb4750
+   77  docker ps -a
+   78  clear
+   79  docker pause 0b6cbacb4750
+   80  docker ps -a
+   81  docker unpause 0b6cbacb4750
+   82  docker ps -a
+   83  docker stop 0b6cbacb4750
+   84  docker ps -a
+   85  docker rm 0b6cbacb4750
+   86  docker ps -a
+
+
+
+Pause vs stop
+-----------------
+When you pause - Containers stop getting CPU from Kernal.
+
+ 89  docker create jenkins
+   90  docker ps -a
+   91  docker start jenkins
+   92  docker start f295775d912e
+   93  clear
+   94  docker ps
+   95  docker stats f295775d912e
+   96  docker top f295775d912e
+   97  ps -eaf | grep 12847
+   98  clear
+   99  docker ps
+  100  docker exec f295775d912e ls /
+  101  clear
+  102  ls
+  103  docker ps
+  104  docker inspect f295775d912e
+
+
+ 105  clear
+  106  history
+  107  clear
+  108  docker ps
+  109  docker pause f295775d912e
+  110  docker ps -a
+  111  docker inspect f295775d912e
+  112  clear
+  113  docker exec f295775d912e ls /
+  114  docker top f295775d912e
+  115  docker stats f295775d912e
+  116  docker unpause f295775d912e
+  117  clear
+  118  docker ps
+  119  docker stop f295775d912e
+  120  docker inspect f295775d912e
+  121  docker exec f295775d912e ls /
+  122  docker top f295775d912e
+  123  clear
+  124  docker stats f295775d912e
+  125  history
+
+
+Pull vs create
+-----------------
+
+
+
+nginx
+mysql
+tomcat
+redis
+mongodb
+solr
+python
+----------------------
+jenkins
+        JAVA
+            WAR
+        WEB SERVER - NODE
+        8080            50000
+        ------------------------------
+
+PID 1 -  Concept of PID1
+=================================================
+How to access containers?
+        How to get inside containers?
+        
+        exec - will executate an executables inside a container - if executable are found. - NEW SESSION
+                        with -it and /bin/bash -you can go insdie a container.
+        attach
+                attach will attached to a session of PID1.
+
+        How to come out without existing a session?
+        ctrl + p + Q
+
+        How to access from outside of the containers?
+          97  docker inspect f295775d912e | grep -i ip
+        98  curl http://172.17.0.2:8080
+
+        docker run -d -p 8080:8080 jenkins
+        docker run -d -p 8090:8080 jenkins
+
+=====================================================
+Docker Containers
+https://www.devopsschool.com/tutorial/docker/commands/
+
+ 109  docker ps -a
+  110  docker run -d -p 8080:8080 jenkins
+  111  docker run -d -p 8080:8080 jenkins
+  112  clear
+  113  docker run -d -p 8090:8080 jenkins
+  114  docker -s
+  115  docker ps
+  116  celar
+  117  clear
+  118  docker ps
+  119  docker exec 245128cc6a0a ls /opt
+  120  touch rajesh.txt
+  121  ls
+  122  docker cp rajesh.txt 245128cc6a0a:/opt
+  123  docker exec 245128cc6a0a ls /opt
+  124  ls
+  125  rm rajesh.txt
+  126  ls
+  127  clear
+  128  docker cp 245128cc6a0a:/opt/rajesh.txt .
+  129  ls
+  130  clear
+  131  ls
+  132  docker diff 245128cc6a0a
+  133  clear
+  134  docker ps -a
+  135  docker port
+  136  docker port 245128cc6a0a
+  137  clear
+  138  docker ps
+  139  docker rename 245128cc6a0a dev1
+  140  docker ps
+  141  clear
+  142  docker run -itd --name dev2 ubunutu
+  143  docker run -itd --name dev2 ubuntu
+  144  docker ps -a
+
+======================
+75  docker rmi nginx ubuntu jenkins
+   76  clear
+   77  ls
+   78  ls
+   79  docker images
+   80  clear
+   81  cd /var/lib/docker
+   82  clear
+   83  ls
+   84  docker info
+   85  clear
+   86  ls
+   87  cd overlay2
+   88  clear
+   89  ls
+   90  du -sh
+   91  docker pull ubuntu
+   92  clear
+   93  ls
+   94  du -h --max-depth=1
+   95  cd ./26d9bb40324dcea3989d1bff7d6f0e48728dbd7ba273b00cba86aa26f3960488
+   96  clear
+   97  ls
+   98  cd diff/
+   99  clear
+  100  ls
+  101  clear
+  102  docker images
+  103  docker inspect ubuntu
+  104  clear
+  105  docker images
+  106  docker history ubuntu
+  107  pwd
+  108  clear
+  109  ls
+  110  cd ..
+  111  ls
+  112  cd ..
+  113  ls
+  114  clear
+  115  df -kh
+  116  clear
+  117  ls
+  118  cd ..
+  119  ls
+  120  cd containers/
+  121  ;
+  122  clear
+  123  ls
+  124  docker run -itd ubuntu
+  125  docker
+  126  clear
+  127  docker ps
+  128  ls
+  129  cd ..
+  130  ls
+  131  cd overlay2/
+  132  clear
+  133  ls
+  134  df -kh
+  135  clear
+  136  docker ps -a
+  137  docker stop c81d57c032f0
+  138  df -kh
+  139  ls
+  140  clear
+  141  ls
+  142  clear
+  143  dcoker ps -a
+  144  docker ps -a
+  145  docker start c81d57c032f0
+  146  clear
+  147  ls
+  148  docker ps
+  149  docker attach c81d57c032f0
+  150  clear
+  151  cd ..
+  152  ls
+  153  clear
+  154  ls
+  155  find . -name rajesh.txt
+  156  docker ps -a
+  157  docker stop c81d57c032f0
+  158  find . -name rajesh.txt
+  159  docker rm c81d57c032f0
+  160  find . -name rajesh.txt
+  161  clear
+  162  history
+
+
+Docker Images
+----------------------
+Lazy way - using Exiting container
+
+  171  docker history ubuntu
+  172  docker ps
+  173  docker ps
+  174  docker exec 8290a26cb93a git
+  175  clear
+  176  docker ps
+  177  docker commit -m"ub-git-up" -a"rajesh" 8290a26cb93a ub-git-up
+  178  docker images
+  179  docker history ubuntu
+  180  docker history ub-git-up
+  181  clear
+  182  docker images
+  183  docker run -itd ub-git-up
+  184  docker ps
+  185  docker exec 382aa014dfa7 git
+  186  history
+
+
+Best Way - Using Dockerfile
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>
+RUN apt-get update
+RUN apt-get install git -y
+
+ docker build -t ub1 .
+
+
+
+Docker Netwokring
+
+Docker volume
+
+Docker regirty..
+=======================================================================
+What Docker Image
+        - Collection of Layers.
+What is layer
+        - filesystems
+        - UUID by SHA256
+        - Each layer their Parents
+What is Layer0?
+        - base image
+        - rootfs
+======================================
+What is Container?
+        Whatever we in image we can see in container.
+        - All the layer of images merge into ONE(RW) layer and attached to Rw empty layer(This is a container.)
+        - Union Mounts.
+
+========================================================
+Jenkins
+        openjdk:8-jdk
+                buildpack-deps:stretch-scm
+                        buildpack-deps:stretch-curl
+                                        debian:stretch
+                                                        scratch
+=================================================================
+Base Image
+        JDK5 - TOMCAT 
+        JDK6
+        JDK7
+        JDk8
+        JDK9
+        JDk9 - TOMCAT 5 Apace 2
+                        Apche 3
+             - TOMCAT 6   
+==============================
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8 && Redis && mysql && tomcat ----- IMAGE
+App---- - IMAGE
+
+CENTOS 7.6  - BASE IMAGE
+OpenJDk 8  - IMAGE
+&& Redis && - IMAGE
+ mysql &&  - IMAGE
+ tomcat - IMAGE
+App----
+=============
+
+
+How to create image?
+        - Using Existing Container
+        - Dockerfile
+                - EACH LINE WOULD CRAETE ONE LAYER.
+                - NEXT LAYER WOULD BE CREATED FROM A CONTAINER OF PREVIOUS LATYER
+                
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>
+RUN apt-get update
+RUN apt-get install git -y
+
+======================
+rootfs  - 1 Layer
+        - openjdk  - - 2 Layer
+                - Tomcat  - - 3 Layer
+                                - APP   - - 4 Layer
+=======================================================================================
+DAY 2 - 13.233.49.156
+
+
+
+FROM ubuntu 
+MAINTAINER Rajesh Kumar <devops@rajeshkumar.xyz>        af2d9cefb7ef
+RUN touch /opt/rajesh1.txt                              913e12e3b57e
+RUN touch /opt/rajesh2.txt                              85b13f506baa
+
+   1  docker pull ubuntu
+    2  sudo systemctl enable docker
+    3  sudo systemctl start docker
+    4  docker pull ubuntu
+    5  clear
+    6  docker images
+    7  docker inspect ubuntu
+    8  clear
+    9  docker history ubuntu
+   10  clear
+   11  cd
+   12  ls
+   13  vi doc1
+   14  docker build -t dock1 -f doc1 .
+   15  docker cleaer
+   16  clear
+   17  docker images
+   18  docker history dock1
+   19  docker inspect dock1
+   20  clear
+   21  docker history dock1
+   22  docker help diff
+   23  clear
+   24  history
+
+   CMD VS ENTRYPOINT
+   ========================
+   Mode of Execution.
+
+CMD 
+        CMD is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holdin - it get exited.
+        CMD be can be replaced any time.
+
+- Shell Mode 
+echo "Rajesh Kumar"
+
+- exec mode
+/bin/echo fsdfs
+
+ENTRYPOINT
+        ENTRYPOINT is a way to have PID1
+                        if PID1 hold - container keep running.
+                        if PID1 is not holding - it get exited.
+        ENTRYPOINT CAN NOT BE REPLACED and 
+                        IF PARAMETER password to a ENTRPOINT - it get appended as param to the ENTRYPOINT.
+
+/bin/tini -- /usr/local/bin/jenkins.sh 33333
+
+Lab - 15 mins - https://www.devopsschool.com/tutorial/docker/docker-run-vs-cmd-entrypoint.html
+
+====================================================
+Registry        
+        pub
+                hub.docker.com
+                        Regiter -> USERID n PASS
+                google registry
+        pvt
+                Artifactory
+                nexus
+                ECR
+                registry
+
+docker login https://index.docker.io/v1/
+docker login http//18.7.7.7.7/fdsfsf
+
+docker push imagename
+docker push http//18.7.7.7.7/fdsfsf
+
+  64  docker images
+   65  docker info
+   66  clear
+   67  docker images
+   68  docker login
+   69  docker push dock1
+   70  docker images
+   71  docker tag dock1 scmgalaxy/dock1
+   72  docker images
+   73  docker push scmgalaxy/dock1
+   74  docker tag dock1 scmgalaxy/dock1:v1
+   75  docker images
+   76  docker push scmgalaxy/dock1:v1
+   77  history
+
+https://www.devopsschool.com/blog/how-to-setup-docker-repository-in-artifactory-and-push-pull-images/
+https://www.devopsschool.com/blog/setup-artifactory-pro-6-1-0-using-docker-containtainer/
+https://www.devopsschool.com/blog/how-to-setup-docker-registry-repository-using-jfrog-artifactory/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+https://www.devopsschool.com/blog/artifactory-install-and-configurations-guide/
+
+
+====================================================================================
+====================================================================================
+================================DAY 3====================================================
+Master
+        API server -> POD -> container - Images -> GR
+        ETCD  -> POD -> container - Images -> GR
+        Controller Mgr  -> POD -> container - Images -> GR
+        Schedular  -> POD -> container - Images -> GR
+
+        Kube proxy -> POD -> container - Images -> GR
+        Kubelet - AGENT - TOOL
+        Docker - - DEAMON - TOOL
+Worker
+        Kubelet - AGENT - TOOL
+        Kube proxy
+        Docker - - DEAMON - TOOL
+
+Workstation
+        kubectl -> config
+
+ONE NODE CLUSTOR = minikube
+                IS VM
+                                API server -> POD ->
+                                ETCD  -> POD
+                                Controller Mgr  -> POD
+                                Schedular  -> POD
+
+                                Kube proxy
+                                Kubelet - AGENT - TOOL
+                                Docker - - DEAMON - TOOL
+https://kubernetes.io/docs/setup/learning-environment/minikube/
+minikube
+kubectl
+                $ minikube start
+===================================================================
+kubernetes clustor -
+                PHYSICAL 
+
+                VIRUAL BOXES
+                        PRIVATE CLOUD
+                               SELF MANAGED -
+                                                OPEN STAKE
+                                                VSPHE 
+                        PUBLIC
+                                HOSTED - MASTER IS PAAS
+                                        AWS - EKS
+                                        AZURE - AKS
+                                        GC - GKE
+                                SELF MANAGED - 
+                                        MANUAL WAY using
+                                        - Kubeadm without cloud Integ
+                                        - Kops with cloud integ
+https://www.devopsschool.com/tutorial/kubernetes/
+============================================================================
+hardway
+https://github.com/kelseyhightower/kubernetes-the-hard-way                                        
+
+54.152.249.148
+Workder - 
+34.207.96.204
+
+User –root
+
+
+Docker 
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+Kubeadm +++++
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.123.1.41:6443 --token eefhm0.4h1ktrpornj7n3th \
+    --discovery-token-ca-cert-hash sha256:e13e6ceb86c32f3b973711186713c900961a7299caa20c7b9770c2ab6269e085
+
+
+   32  kubectl
+   33  kubectl cluster-info
+   34  kubectlget nodes
+   35  kubectl get nodes
+   36  kubectl get pods
+   37  kubectl get ns
+   38  kubectl get pods -n=kube-system
+   39  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   40  kubectl get nodes
+   41  kubectl describe node ip-10-123-1-41.ec2.internal
+   42  kubectl get pods -n=kube-system
+   43  kubectl describe pod coredns-6955765f44-cggpd -n=kube-system
+   44  clear
+   45  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   46  clear
+   47  kubectl get pods -n=kube-system
+   48  kubectl get nodes
+   49  history
+===========================================================================
+===================================================================
+Working with Nodes?
+======================
+
+GET aka list
+create
+describe
+explain
+edit
+use
+delete
+
+
+Working with Namespaces
+===========================================
+GET aka list Namespaces
+create Namespaces
+        CMD
+        YAML
+describe Namespaces
+explain Namespaces
+edit Namespaces
+use Namespaces
+delete Namespaces
+
+   13  kubectl get nodes -o wide
+   14  kubectl get pods -o wide
+   15  kubectl get pods -o wide -n=kube=system
+   16  kubectl get pods -o wide -n=kube-system
+   17  clear
+   18  kubectl api-resources
+   19  c;ear
+   20  clear
+   21  kubect
+   22  kubectl
+   23  kubectl api-versions
+   24  clear
+   25  kubectl get
+   26  kubectl get -h
+   27  kubectl api-resources
+   28  clear
+   29  kubectl get ns
+   30  clear
+   31  kubectl
+   32  kubectl create
+   33  kubectl create namespace
+   34  kubectl create namespace -h
+   35  clear
+   36  kubectl create namespace -h
+   37  kubectl create namespace dev
+   38  kubectl get ns
+   39  kubectl
+   40  kubectl describe ns dev
+   41  clear
+   42  kubectl describe ns dev
+   43  kubeclt
+   44  kubectl
+   45  clear
+   46  kubectl explain ns
+   47  kubectl explain ns.spec
+   48  kubectl explain ns.spec.finalizers
+   49  kubectl explain ns.metadata
+   50  kubectl explain ns.metadata.namespace
+   51  clear
+   52  kubectl
+   53  kubectl edit ns dev
+   54  clear
+   55  kubectl
+   56  kubectl delete ns dev
+   57  kubectl get ns
+   58  history
+
+
+
+
+Working with ReplicationController
+===========================================
+
+
+Working with Deployment
+===========================================
+
+Working with Labels
+===========================================
+
+Working with Service
+===========================================
+
+
+ERROR
+--------------------------------------------------
+[ERROR FileContent--proc-sys-net-bridge-bridge-nf-call-iptables]:
+--------------------------------------------------
+
+vi /etc/sysctl.conf
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+net.bridge.bridge-nf-call-iptables = 1 
+
+sudo sysctl -p
+
+
+How to reset?
+https://www.devopsschool.com/blog/how-to-delete-remove-clean-existing-corrupted-or-old-kubeadm-kubernetes-clusters-setup/
+
+
+===================================================================================
+===================================================================================
+
+Working with Pods
+===========================================
+GET aka list
+create
+        CMD
+        YAML
+                kubectl create -f filename
+
+pod.yaml
+-------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels: 
+    app: webserver
+spec:
+  containers:
+  - name: hello-ctr
+    image: nginx
+    ports:
+    - containerPort: 80
+
+    
+
+describe
+explain
+edit
+        CMD
+        FILE
+use
+        How to get inside a POD.
+        exec
+        attach
+        cp
+        logs
+
+        curl http://podip
+
+delete
+        CMD
+        yaml
+
+
+  55  clear
+   56  kubectl get pods -n=kube-system
+   57  kubectl get nodes
+   58  history
+   59  clear
+   60  kubectl getpods
+   61  kubectl get pods
+   62  kubectl create ns dev
+   63  kubectl get pods -n=dev
+   64  kubectl create
+   65  clear
+   66  kubectl
+   67  kubectl api-resources
+   68  kubectl api-versions
+   69  clear
+   70  kubectl explain pod
+   71  kubectl explain pod.spec
+   72  kubectl explain pod.spec.containers
+   73  clear
+   74  cd
+   75  ls
+   76  vi pod.yaml
+   77  kubctl create -f pod.yaml
+   78  kubectl create -f pod.yaml
+   79  kubectl create -f pod.yaml -n=dev
+   80  kubectl get pods
+   81  kubectl get pods -n=dev
+   82  kubectl get pods  --all-namespaces
+   83  kubectl get pods  --all-namespaces -o wide
+   84  clear
+   85  kubectl get pods
+   86  kubectl describe pod hello-pod
+   87  kubectl describe pod hello-pod -n=dev
+   88  clear
+   89  kubectl describe pod hello-pod -n=dev
+   90  clear
+   91  kubectl get pod
+   92  kubectl edit pod hello-pod
+   93  kubectl get pod
+   94  kubectl edit pod hello-pod
+   95  ls
+   96  vi pod.yaml
+   97  kubectl create -f pod.yaml
+   98  kubectl apply -f pod.yaml
+   99  kubectl describe pod hello-pod
+  100  clear
+  101  kubectl
+  102  clear
+  103  ls
+  104  kubectl get pods
+  105  kubectl exec -it hello-pod /bin/bash
+  106  history
+kubectl attach hello-pod
+
+  59  kubectl get pods -o wide
+   60  curl http://10.44.0.1
+   61  clear
+   62  kubectl get pods
+   63  kubectl describe pod hello-pod
+   64  clear
+   65  docker ps
+   66  kubectl describe pod hello-pod
+   67  docker ps
+   68  docker ps | grep 980
+   69  kubectl describe pod hello-pod
+   70  clear
+   71  ls
+   72  kubectl get pods
+   73  touch rajesh.txt
+   74  ls
+   75  kubectl cp rajesh.txt hello-pod:/opt
+   76  kubectl exec hello-pod ls /oprt
+   77  kubectl exec hello-pod ls /opt
+   78  kubectl logs hello-pod
+   79  kubectl
+
+   82  kubectl delete pod hell-pod
+   83  kubectl delete pod hello-pod
+   84  kubectl delete -f pod.yaml -n=dev
+==================================================
+==================================================
+Working with Replication Controller.
+===============
+Replication - 1 to many
+Controller - Controller make sure desire must match wuth Actual.
+
+
+
+GET aka list Replication Controller
+create Replication Controller
+        CMD
+        YAML
+describe Replication Controller
+explain Replication Controller
+edit Replication Controller
+use Replication Controller
+        Replication
+        Controller
+delete Replication Controller
+=========================
+
+
+rc.yaml
+===========================
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2   
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: nginx
+        ports:
+        - containerPort: 80
+
+  111  ls
+  112  kubectl get rc
+  113  kubectl
+  114  kubectl api-resources | grep -cont
+  115  kubectl api-resources | grep -i cont
+  116  clearr
+  117  kubectl get rc
+  118  kubectl get rc -n=dev
+  119  clear
+  120  kubectl create
+  121  kubectl api-resources | grep -i cont
+  122  clear
+  123  vi rc.yaml
+  124  kubectl create -f rc.yaml
+  125  kubectl explain rc
+  126  kubectl explain rc.spec
+  127  kubectl explain rc.spec.spec
+  128  clear
+  129  kubeclt get rc
+  130  kubectl
+  131  kubectl get rc
+  132  clear
+  133  kubectl get rc
+  134  kubectl describe rc hello-rc
+  135  clear
+  136  kubectl get pods
+  137  kubectl edit rc hello-rc
+  138  kubectl get pods
+  139  kubectl getrc
+  140  kubectl get rc
+  141  kubectl get pods
+  142  kubectl delete pod hello-rc-fs5wd hello-rc-wqmd2
+  143  kubectl get pods
+  144  history
+kubectl delete -f rc.yaml
+
+==================================================
+===================DEPLOYMENT===============================
+What is Deployment?
+        replicasets + deployment controller
+        Can replicate + Desire to ACTUAL
+        Versioning
+        ROllout
+        Rollback
+        
+GET aka list DEPLOYMENT
+create DEPLOYMENT
+        CMD
+        YAML
+describe DEPLOYMENT
+explain DEPLOYMENT
+edit DEPLOYMENT
+use DEPLOYMENT
+        replicasets + deployment controller
+        Can replicate + Desire to ACTUAL
+        Versioning
+        ROllout
+
+        Rollback
+delete DEPLOYMENT
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: null
+  generation: 1
+  labels:
+    app: my-depdsdasdasd
+  name: my-dep
+  selfLink: /apis/apps/v1/namespaces/default/deployments/my-dep
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 20
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: my-dep1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-dep1
+    spec:
+      containers:
+      - image: scmgalaxy/nginx-devopsschoolv2
+        imagePullPolicy: Always
+        name: nginx
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+
+
+Image
+scmgalaxy/nginx-devopsschoolv1
+scmgalaxy/nginx-devopsschoolv2
+
+
+  163  kubectl api-resources
+  164  kubectl api-resources | grep dep
+  165  clear
+  166  kubectl api-versions
+  167  clear
+  168  kubectl get deploy
+  169  kubectl
+  170  kubectl create
+  171  clear
+  172  mkubectl create deploy
+  173  kubectl create deploy
+  174  clear
+  175  kubectl create deployment my-dep --image=nginx
+  176  kubectl get deploy
+  177  kubectl create deploy
+  178  clear
+  179  kubectl get deploy
+  180  kubectl explain deploy
+  181  kubectl explain deploy.spec
+  182  clear
+  183  kubectl get deploy
+  184  kubectl describe deploy my-dep
+  185  clear
+  186  kubectl edit deploy my-dep
+  187  kubectl get pods
+  188  kubectl describe deploy my-dep
+  189  clear
+  190  kubectl et rs
+  191  kubectl get rs
+  192  kubectl describe rs my-dep-6589b6f7dc
+  193  kubectl describe deploy my-dep
+  194  kubectl get pods
+  195  kubectl describe pod my-dep-6589b6f7dc-k2xv9
+  196  clear
+  197  kubectl get pods
+  198  kubectl delete pod my-dep-6589b6f7dc-k2xv9
+  199  kubectl get pods
+  200*
+  201  ls
+  202  kubectl get deploy
+  203  kubectl get deploy my-dep
+  204  kubectl get deploy my-dep -o yaml
+  205  kubectl get deploy my-dep -o yaml -export
+  206  kubectl get deploy my-dep -o yaml --export
+  207  kubectl get deploy my-dep -o yaml --export >> dep1.yaml
+  208  more dep1.yaml
+  209  kubectl get deploy my-dep -o yaml --export
+  210  history
+
+  222  kubectl get pods
+  223  clear
+  224  kubectl
+  225  kubectl scale
+  226  clear
+  227  kubectl get deploy
+  228  kubectl scale --replicas=40 deploy/my-dep
+  229  kubectl get pods
+  230  clear
+  231  kubectl get pods
+  232  clear
+  233  kubectl get pods
+  234  clear
+  235  kubectl scale --replicas=4 deploy/my-dep
+  236  kubectl get pods
+  237  clear
+  238  history
+
+  238  history
+  239  clear
+  240  ls
+  241  kubectl
+  242  clear
+  243  kubectl rollout
+  244  kubectl rollout history deployments my-dep
+  245  clear
+  246  kubectl get pods
+  247  history
+  248   kubectl scale --replicas=2 deploy/my-dep
+  249  clear
+  250  kubectl get pods
+  251  kubectl get pods -o wide
+  252  curl http://10.44.0.1
+  253  curl http://10.44.0.2
+  254  cler
+  255  ls
+  256  vi dep3.yaml
+  257  kubectl apply -f dep3.yaml
+  258  kubectl get pods -o wide
+  259  clear
+  260  history
+  261   kubectl scale --replicas=2 deploy/my-dep
+  262  clear
+  263  kubectl get pods -o wide
+  264  curl http://10.44.0.3
+  265  curl http://10.44.0.22
+  266  history
+  267  kubectl rollout history deployments my-dep
+  268  clear
+  269  history
+  270  clear
+  271  kubectl rollout history deployments my-dep
+  272  kubectl rollout
+  273  kubectl rollout undo
+  274  kubectl rollout undo -h
+  275  clear
+  276  kubectl rollout
+  277  kubectl get pods
+  278  history
+
+
+
+kubectl rollout undo deploy/my-dep --to-revision=1
+kubectl rollout status deploy/my-dep 
+
+
+kubectl taint nodes ip-10-123-1-41.ec2.internal node-role.kubernetes.io/master:NoSchedule-
+
+
+  279  cler
+  280  ls
+  281  kubectl scale --replicas=50 deploy/my-dep
+  282  clear
+  283  kubectl get pods
+  284  clear
+  285  kubectl get pods
+  286  clear
+  287  kubectl get pods
+  288  clear
+  289  kubectl get pods
+  290  clear
+  291  kubectl get pods
+  292  clear
+  293  kubectl get pods
+  294  cler
+  295  clear
+  296  kubectl get pods
+  297  history
+  298  kubectl scale --replicas=100 deploy/my-dep
+  299  clear
+  300  kubectl get pods
+  301  clear
+  302  kubectl get pods
+  303  watch kubectl get pods
+  304  kubectl scale --replicas=150 deploy/my-dep
+  305  watch kubectl get pods
+  306  kubectl get pods | grep Pending |
+  307  kubectl get pods | grep Pending | wc -l
+  308  kubectl get nodes
+  309  kubectl describe node ip-10-123-1-41.ec2.internal
+  310  clear
+  311  kubectl get nodes
+  312  kubectl describe node ip-10-123-1-41.ec2.internal
+  313  clear
+  314  kubectl taint nodes ip-10-123-1-41.ec2.internal node-role.kubernetes.io/master:NoSchedule-
+  315  watch kubectl get pods | grep Pending | wc -l
+  316  kubectl get pods | grep Pending | wc -l
+  317  kubectl get pods
+  318  kubectl get pods -o wide
+  319  curl http://10.32.0.44
+  320  clear
+  321  kubectl rollout undo deploy/my-dep --to-revision=1
+  322  kubectl rollout status deploy/my-dep
+  323  clear
+  324  kubectl get pod -ow ide
+  325  kubectl get pod -o wide
+  326  curl http://10.32.0.25
+  327  history
+
+  377  kubectl explain deployment
+  378  kubectl explain deployment.deployment
+  379  kubectl explain deployment.spec.deployment
+  380  kubectl explain deployment.spec.strategy
+  381  kubectl explain deployment.spec.strategy.rollingUpdate
+  382  kubectl explain deployment.spec.strategy."Recreate"
+  383  kubectl explain deployment.spec.strategy.recreate
+  384  history
+=========================================================
+=========================================================
+=========================================================
+
+
+
+  # Update pod 'foo' with the label 'unhealthy' and the value 'true'.
+  kubectl get pod --show-labels
+  kubectl label pods hello-pod unhealthy=true
+
+  # Update pod 'foo' with the label 'status' and the value 'unhealthy', overwriting any existing value.
+  kubectl label pods hello-pod unhealthy=true
+  kubectl label --overwrite pods hello-pod unhealthy=false
+
+  # Update all pods in the namespace
+  kubectl label pods --all status=unhealthy
+
+  # Update a pod identified by the type and name in "pod.json"
+  kubectl label -f pod.json status=unhealthy
+
+  # Update pod 'foo' by removing a label named 'bar' if it exists.
+  # Does not require the --overwrite flag.
+  kubectl label pods hello-pod app-
+
+
+https://www.devopsschool.com/tutorial/kubernetes/kubernetes-resource-objects/label-example-programs.html
+https://www.devopsschool.com/tutorial/kubernetes/labs/lab-12-kubernetes-labels.html
+https://www.devopsschool.com/blog/working-with-kubernetes-cluster-using-kubectl-part-7-labels/
+=============================================
+52.90.11.112	
+3.81.91.243
+
+Service
+====================
+TYPES
+        CLUSTORIP
+        CLUSTORIP - NodePort
+        CLUSTORIP - NodePort - LoadBalancer
+
+kubectl create service clusterip my-cs --tcp=8080:80
+Selector:          app=my-cs
+
+kubectl label --overwrite pods hello-pod app=my-cs
+kubectl label --overwrite pods hello-pod1 app=my-cs
+kubectl describe svc my-cs
+
+
+kubectl create service nodeport my-ns1 --tcp=5678:80
+5678 - SERVICE PORT
+80 - POD PORT
+
+kubectl label --overwrite svc my-ns1 app=my-cs
+
+
+
+ 507  kubectl create -f pod.yaml
+  508  kubectl create -f pod1.yaml
+  509  kubectl get pod
+  510  kubectl get pod -o wide
+  511  curl http://10.44.0.1
+  512  curl http://10.44.0.2
+  513  clear
+  514  ls
+  515  clear
+  516  kubectl create
+  517  kubectl create service
+  518  kubectl create service clusterip
+  519  kubectl create service clusterip -h
+  520  cler
+  521  kubectl get svc
+  522  clear
+  523  cleatr
+  524  clear
+  525  kubectl create service clusterip my-cs --tcp=8080:80
+  526  kubectl get svc
+  527  curl http://10.96.109.140:8080
+  528  kubectl describe svc my-cs
+  529  clear
+  530  kubectl get svc --show-lables
+  531  kubectl get svc --show-lable
+  532  kubectl get svc --show-labels
+  533  kubectl get pod --show-labels
+  534  clear
+  535  kubectl label pods hello-pod app=my-cs
+  536  kubectl label --overwrite pods hello-pod app=my-cs
+  537  kubectl label --overwrite pods hello-pod1 app=my-cs
+  538  kubectl describe svc my-cs
+  539  kubectl get svc
+  540  curl http://10.96.109.140:8080
+  541  clear
+  542  kubectl create service nodeport
+  543  kubectl create service nodeport -h
+  544  clear
+  545  kubectl create service nodeport my-ns1 --tcp=5678:80
+  546  kubectl get svc
+  547  curl http://10.96.209.81:5678
+  548  kubectl label svc my-ns1 app=my-cs
+  549  kubectl label --overwrite svc my-ns1 app=my-cs
+  550  kubectl describe svc my-ns1
+  551  kubectl edit svc my-ns1
+  552  kubectl describe svc my-ns1
+  553  kubectl get svc
+  554  curl http://10.96.209.81:5678
+  555  clear
+  556  kubectl get svc
+  557  history
+
+
+kubectl create service loadbalancer my-lbs --tcp=8095:80
+
+
+
+kubectl run nginx --image=scmgalaxy/nginx-devopsschoolv1
+ kubectl expose deploy nginx --port=8080 --target-port=80 --type=LoadBalancer
+ 31238
+
+
+
+http://52.90.11.112:30387/
+3.81.91.243:30387
+Pass – Onm0bile
+
+======================================================
+Docker Volume
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+        - volume - would be created in /var/lib/docker/volumens
+        - mountfs - in host machine anywhere?
+        - tmpfs - memory
+
+ 586  docker volume ls
+  587  clear
+  588  docker volume
+  589  docker volume ls
+  590  docker volume rajesh
+  591  docker volume create rajesh
+  592  clear
+  593  docker volume ls
+  594  cd /var/lib/docker/volumes/
+  595  ls
+  596  cd rajesh/
+  597  ls
+  598  cd _data/
+  599  ls
+  600  clear
+  601  ls
+  602  docker run -itd -v rajesh:/opt/raju ubuntu
+  603  docker ps
+  604  clear
+  605  docker exec 718f5e73c4f0 df -kh
+  606  docker attach 718f5e73c4f0
+  607  docker ps
+  608  ls
+  609  pwd
+  610  cd ..
+  611  ls
+  612  cd ..
+  613  ls
+  614  docker rm 718f5e73c4f0
+  615  docker stop 718f5e73c4f0
+  616  docker rm 718f5e73c4f0
+  617  ls
+  618  cd rajesh/
+  619  ls
+  620  cd _data/
+  621  ls
+  622  docker run -itd -v rajesh:/opt/raju ubuntu
+  623  docker exec db4aed55a39f3cad1201cd28e1f2638fef65787bf5db6f61d74dbf69208bd094 ls /opt/raju
+  624  cd /opt/
+  625  clear
+  626  ls
+  627  mkdir mybackup
+  628  ls
+  629  cd mybackup/
+  630  pwd
+  631  docker run -itd -v /opt/mybackup:/opt/raju ubuntu
+  632  docker attach d35ce92a8a9cc460a541e67e93a30583ca2bdf871677589c87f955aa4e320696
+  633  ls
+  634  history
+
+=============================================================
+
+
+Image
+scmgalaxy/nginx-devopsschoolv1
+scmgalaxy/nginx-devopsschoolv2
+
+
+empydirs
+https://www.devopsschool.com/blog/kubernetes-volume-emptydir-explained-with-examples/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: scmgalaxy/nginx-devopsschoolv1
+    name: test-container
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+
+hostpath
+https://www.devopsschool.com/blog/kubernetes-volume-hostpath-explained-with-examples/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: scmgalaxy/nginx-devopsschoolv1
+    name: test-container
+    volumeMounts:
+    - mountPath: /test-pd
+      name: test-volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      # directory location on host
+      path: /data
+      # this field is optional
+      type: DirectoryOrCreate
+
+nfs
+=================================
+https://www.devopsschool.com/blog/setup-nfs-server-and-use-inside-a-kubernetes-pods-in-rhel-centos7/
+
+--------------------------------------------------------------------
+$ yum update
+$ rpm -qa | grep nfs-utils
+$ yum install nfs-utils rpcbind
+$ systemctl enable nfs-server
+$ systemctl enable rpcbind
+$ systemctl enable nfs-lock
+$ systemctl enable nfs-idmap
+$ systemctl start rpcbind
+$ systemctl start nfs-server
+$ systemctl start nfs-lock
+$ systemctl start nfs-idmap
+$ systemctl status nfs
+$ mkdir /onmobile
+$ chmod 1777 /onmobile
+$ vi /etc/exports
+------------------
+/onmobile *(rw)
+
+exportfs -r
+systemctl restart nfs-server
+/onmobile
+
+
+pv
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+https://www.devopsschool.com/blog/kubernetes-persistentvolume-and-persistentvolumeclaim-using-nfs-volume-types/
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001 
+spec:
+  capacity:
+    storage: 1Gi 
+  accessModes:
+  - ReadWriteOnce 
+  nfs: 
+    path: /onmobile 
+    server: 10.123.1.41
+  persistentVolumeReclaimPolicy: Recycle
+
+
+pvc
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim1
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: 1Gi 
+
+ 
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-pv-pod1
+spec:
+  containers:
+    - name: task-pv-container
+      image: scmgalaxy/nginx-devopsschoolv1
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: nfs-claim1
+==============================================
+configmap
+https://www.devopsschool.com/blog/kubernetes-configmap-explained-using-example/
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld-nginx
+  labels:
+    app: helloworld-nginx
+spec:
+  containers:
+  - name: nginx
+    image: scmgalaxy/nginx-devopsschoolv1
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/nginx/conf.d
+  - name: k8s-demo
+    image: wardviaene/k8s-demo
+    ports:
+    - containerPort: 3000
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+        items:
+        - key: imp.config
+          path: myconfo.conf
+
+          
+ 619  vi imp.config
+  620  kubectl create configmap my-config --from-file=imp.config
+  621  kubectl get cm
+  622  kubectl describe cm my-config
+  623  c;ear
+  624  clear
+  625  ls
+  626  kubectl get cm
+  627  kubectl describe cm my-config
+  628  kubectl get cm
+  629  clear
+  630  ls
+  631  vi pv1.yaml
+  632  kubectl create pv1.yaml
+  633  kubectl create -f pv1.yaml
+  634  kubectl get pods
+  635  ckear
+  636  kubectl get pods
+  637  kubectl exec helloworld-nginx ls  //etc/nginx/conf.d
+  638  kubectl exec helloworld-nginx ls  /etc/nginx/conf.d
+  639  kubectl exec helloworld-nginx more /etc/nginx/conf.d/myconfo.conf
+  640  history

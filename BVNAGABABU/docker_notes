@@ -215,6 +215,9 @@ create -> start -> stop -> start -> restart -> pause -> unpause -> stop -> rm
    85  docker rm 0b6cbacb4750
    86  docker ps -a
 
+To list the local available docker images 
+-----------------------------------------
+docker image list
 
 
 Pause vs stop

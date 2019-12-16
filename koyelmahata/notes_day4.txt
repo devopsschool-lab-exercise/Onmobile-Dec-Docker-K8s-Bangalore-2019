@@ -1,1 +1,669 @@
+=============Day 4 ===============
 
+=============================================
+
+52.90.11.112	
+
+3.81.91.243
+
+
+
+Service
+
+====================
+
+TYPES
+
+        CLUSTORIP
+
+        CLUSTORIP - NodePort
+
+        CLUSTORIP - NodePort - LoadBalancer
+
+
+
+kubectl create service clusterip my-cs --tcp=8080:80
+
+Selector:          app=my-cs
+
+
+
+kubectl label --overwrite pods hello-pod app=my-cs
+
+kubectl label --overwrite pods hello-pod1 app=my-cs
+
+kubectl describe svc my-cs
+
+
+
+
+
+kubectl create service nodeport my-ns1 --tcp=5678:80
+
+5678 - SERVICE PORT
+
+80 - POD PORT
+
+
+
+kubectl label --overwrite svc my-ns1 app=my-cs
+
+
+
+
+
+
+
+ 507  kubectl create -f pod.yaml
+
+  508  kubectl create -f pod1.yaml
+
+  509  kubectl get pod
+
+  510  kubectl get pod -o wide
+
+  511  curl http://10.44.0.1
+
+  512  curl http://10.44.0.2
+
+  513  clear
+
+  514  ls
+
+  515  clear
+
+  516  kubectl create
+
+  517  kubectl create service
+
+  518  kubectl create service clusterip
+
+  519  kubectl create service clusterip -h
+
+  520  cler
+
+  521  kubectl get svc
+
+  522  clear
+
+  523  cleatr
+
+  524  clear
+
+  525  kubectl create service clusterip my-cs --tcp=8080:80
+
+  526  kubectl get svc
+
+  527  curl http://10.96.109.140:8080
+
+  528  kubectl describe svc my-cs
+
+  529  clear
+
+  530  kubectl get svc --show-lables
+
+  531  kubectl get svc --show-lable
+
+  532  kubectl get svc --show-labels
+
+  533  kubectl get pod --show-labels
+
+  534  clear
+
+  535  kubectl label pods hello-pod app=my-cs
+
+  536  kubectl label --overwrite pods hello-pod app=my-cs
+
+  537  kubectl label --overwrite pods hello-pod1 app=my-cs
+
+  538  kubectl describe svc my-cs
+
+  539  kubectl get svc
+
+  540  curl http://10.96.109.140:8080
+
+  541  clear
+
+  542  kubectl create service nodeport
+
+  543  kubectl create service nodeport -h
+
+  544  clear
+
+  545  kubectl create service nodeport my-ns1 --tcp=5678:80
+
+  546  kubectl get svc
+
+  547  curl http://10.96.209.81:5678
+
+  548  kubectl label svc my-ns1 app=my-cs
+
+  549  kubectl label --overwrite svc my-ns1 app=my-cs
+
+  550  kubectl describe svc my-ns1
+
+  551  kubectl edit svc my-ns1
+
+  552  kubectl describe svc my-ns1
+
+  553  kubectl get svc
+
+  554  curl http://10.96.209.81:5678
+
+  555  clear
+
+  556  kubectl get svc
+
+  557  history
+
+
+
+
+
+kubectl create service loadbalancer my-lbs --tcp=8095:80
+
+
+
+
+
+
+
+kubectl run nginx --image=scmgalaxy/nginx-devopsschoolv1
+
+ kubectl expose deploy nginx --port=8080 --target-port=80 --type=LoadBalancer
+
+ 31238
+
+
+
+
+
+
+
+http://52.90.11.112:30387/
+
+3.81.91.243:30387
+
+Pass – Onm0bile
+
+
+
+======================================================
+
+Docker Volume
+
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+        - volume - would be created in /var/lib/docker/volumens
+
+        - mountfs - in host machine anywhere?
+
+        - tmpfs - memory
+
+
+
+ 586  docker volume ls
+
+  587  clear
+
+  588  docker volume
+
+  589  docker volume ls
+
+  590  docker volume rajesh
+
+  591  docker volume create rajesh
+
+  592  clear
+
+  593  docker volume ls
+
+  594  cd /var/lib/docker/volumes/
+
+  595  ls
+
+  596  cd rajesh/
+
+  597  ls
+
+  598  cd _data/
+
+  599  ls
+
+  600  clear
+
+  601  ls
+
+  602  docker run -itd -v rajesh:/opt/raju ubuntu
+
+  603  docker ps
+
+  604  clear
+
+  605  docker exec 718f5e73c4f0 df -kh
+
+  606  docker attach 718f5e73c4f0
+
+  607  docker ps
+
+  608  ls
+
+  609  pwd
+
+  610  cd ..
+
+  611  ls
+
+  612  cd ..
+
+  613  ls
+
+  614  docker rm 718f5e73c4f0
+
+  615  docker stop 718f5e73c4f0
+
+  616  docker rm 718f5e73c4f0
+
+  617  ls
+
+  618  cd rajesh/
+
+  619  ls
+
+  620  cd _data/
+
+  621  ls
+
+  622  docker run -itd -v rajesh:/opt/raju ubuntu
+
+  623  docker exec db4aed55a39f3cad1201cd28e1f2638fef65787bf5db6f61d74dbf69208bd094 ls /opt/raju
+
+  624  cd /opt/
+
+  625  clear
+
+  626  ls
+
+  627  mkdir mybackup
+
+  628  ls
+
+  629  cd mybackup/
+
+  630  pwd
+
+  631  docker run -itd -v /opt/mybackup:/opt/raju ubuntu
+
+  632  docker attach d35ce92a8a9cc460a541e67e93a30583ca2bdf871677589c87f955aa4e320696
+
+  633  ls
+
+  634  history
+
+
+
+=============================================================
+
+
+
+
+
+Image
+
+scmgalaxy/nginx-devopsschoolv1
+
+scmgalaxy/nginx-devopsschoolv2
+
+
+
+
+
+empydirs
+
+https://www.devopsschool.com/blog/kubernetes-volume-emptydir-explained-with-examples/
+
+
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: test-pd
+
+spec:
+
+  containers:
+
+  - image: scmgalaxy/nginx-devopsschoolv1
+
+    name: test-container
+
+    volumeMounts:
+
+    - mountPath: /cache
+
+      name: cache-volume
+
+  volumes:
+
+  - name: cache-volume
+
+    emptyDir: {}
+
+
+
+hostpath
+
+https://www.devopsschool.com/blog/kubernetes-volume-hostpath-explained-with-examples/
+
+
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: test-pd
+
+spec:
+
+  containers:
+
+  - image: scmgalaxy/nginx-devopsschoolv1
+
+    name: test-container
+
+    volumeMounts:
+
+    - mountPath: /test-pd
+
+      name: test-volume
+
+  volumes:
+
+  - name: test-volume
+
+    hostPath:
+
+      # directory location on host
+
+      path: /data
+
+      # this field is optional
+
+      type: DirectoryOrCreate
+
+
+
+nfs
+
+=================================
+
+https://www.devopsschool.com/blog/setup-nfs-server-and-use-inside-a-kubernetes-pods-in-rhel-centos7/
+
+
+
+--------------------------------------------------------------------
+
+$ yum update
+
+$ rpm -qa | grep nfs-utils
+
+$ yum install nfs-utils rpcbind
+
+$ systemctl enable nfs-server
+
+$ systemctl enable rpcbind
+
+$ systemctl enable nfs-lock
+
+$ systemctl enable nfs-idmap
+
+$ systemctl start rpcbind
+
+$ systemctl start nfs-server
+
+$ systemctl start nfs-lock
+
+$ systemctl start nfs-idmap
+
+$ systemctl status nfs
+
+$ mkdir /onmobile
+
+$ chmod 1777 /onmobile
+
+$ vi /etc/exports
+
+------------------
+
+/onmobile *(rw)
+
+
+
+exportfs -r
+
+systemctl restart nfs-server
+
+/onmobile
+
+
+
+
+
+pv
+
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+
+https://www.devopsschool.com/blog/kubernetes-persistentvolume-and-persistentvolumeclaim-using-nfs-volume-types/
+
+
+
+apiVersion: v1
+
+kind: PersistentVolume
+
+metadata:
+
+  name: pv0001 
+
+spec:
+
+  capacity:
+
+    storage: 1Gi 
+
+  accessModes:
+
+  - ReadWriteOnce 
+
+  nfs: 
+
+    path: /onmobile 
+
+    server: 10.123.1.41
+
+  persistentVolumeReclaimPolicy: Recycle
+
+
+
+
+
+pvc
+
+
+
+apiVersion: v1
+
+kind: PersistentVolumeClaim
+
+metadata:
+
+  name: nfs-claim1
+
+spec:
+
+  accessModes:
+
+    - ReadWriteOnce 
+
+  resources:
+
+    requests:
+
+      storage: 1Gi 
+
+
+
+ 
+
+
+
+kind: Pod
+
+apiVersion: v1
+
+metadata:
+
+  name: task-pv-pod1
+
+spec:
+
+  containers:
+
+    - name: task-pv-container
+
+      image: scmgalaxy/nginx-devopsschoolv1
+
+      ports:
+
+        - containerPort: 80
+
+          name: "http-server"
+
+      volumeMounts:
+
+        - mountPath: "/usr/share/nginx/html"
+
+          name: task-pv-storage
+
+  volumes:
+
+    - name: task-pv-storage
+
+      persistentVolumeClaim:
+
+        claimName: nfs-claim1
+
+==============================================
+
+configmap
+
+https://www.devopsschool.com/blog/kubernetes-configmap-explained-using-example/
+
+
+
+
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: helloworld-nginx
+
+  labels:
+
+    app: helloworld-nginx
+
+spec:
+
+  containers:
+
+  - name: nginx
+
+    image: scmgalaxy/nginx-devopsschoolv1
+
+    ports:
+
+    - containerPort: 80
+
+    volumeMounts:
+
+    - name: config-volume
+
+      mountPath: /etc/nginx/conf.d
+
+  - name: k8s-demo
+
+    image: wardviaene/k8s-demo
+
+    ports:
+
+    - containerPort: 3000
+
+  volumes:
+
+    - name: config-volume
+
+      configMap:
+
+        name: my-config
+
+        items:
+
+        - key: imp.config
+
+          path: myconfo.conf
+
+
+
+          
+
+ 619  vi imp.config
+
+  620  kubectl create configmap my-config --from-file=imp.config
+
+  621  kubectl get cm
+
+  622  kubectl describe cm my-config
+
+  623  c;ear
+
+  624  clear
+
+  625  ls
+
+  626  kubectl get cm
+
+  627  kubectl describe cm my-config
+
+  628  kubectl get cm
+
+  629  clear
+
+  630  ls
+
+  631  vi pv1.yaml
+
+  632  kubectl create pv1.yaml
+
+  633  kubectl create -f pv1.yaml
+
+  634  kubectl get pods
+
+  635  ckear
+
+  636  kubectl get pods
+
+  637  kubectl exec helloworld-nginx ls  //etc/nginx/conf.d
+
+  638  kubectl exec helloworld-nginx ls  /etc/nginx/conf.d
+
+  639  kubectl exec helloworld-nginx more /etc/nginx/conf.d/myconfo.conf
+
+  640  history

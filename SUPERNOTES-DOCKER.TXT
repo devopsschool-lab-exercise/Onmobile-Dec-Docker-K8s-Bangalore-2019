@@ -22,7 +22,7 @@ Dev - 10 FEA - 10 DEV
             Unit TESTING - Junit
             Package mgmt -
                             SYSTEM
-                            APP -
+                            APP - jar
             Archive tool - Artifactory
             --------------------------------------
             OnMobX56.7 ----> 100 BOXES
@@ -1687,6 +1687,7 @@ Docker DEFAULT NETWORK DRIVER -
           BRIDGE
           HOST
           NONE
+============================================
 
 
 HOST MACHINE
@@ -1840,10 +1841,140 @@ apt-get update && apt-get install -y iputils-ping traceroute net-tools iproute2
   139  clear
   140  ls
   141  history
+==================================================CICD==================================================
+What is CI?
+        Continous Integration
+        Auto Build + Auto Testing
+        -----------------------------
+            Immediate Feedback
+        
+        Plan->Code->Analyze->BUild->UT->Pack->Archive->Dep2Qa->AT->CC
+        JIRA->Git->SonarQube->Maven->Junit->Jar>Art->Ansible-Selen->Jacoco
+                                                                    IF ALL PASSED - Dep2Prod
+                                                                    IF FAILED ANY - REPEAT
+        -----------------------------INTEG--------------------------------------
+                                      Continous.
+        ----------------------------IMM FEEDBACK----------------------------------
+        tools
+        Jenkins -> Teamcity -> Bamboo -> UBuild
+        ===========================================================================
+                                    JENKINS
+
+        CD
+            Continous Delivery - You have package available for PROD
+            Continous Deployment -
+
+      ==============================================================================
+      What is Jenkins?
+              CI tool
+              Free 
+              Open Source
+              Powered with pLugins
+
+      Architecutre
+      Server - Node
+      WEB     - Build AGENT
+      8080    - RANDOM
+      -------------------------------------
+      https://www.devopsschool.com/tutorial/jenkins/
+      How to install it?
+      https://www.devopsschool.com/tutorial/jenkins/jenkins-installation-and-configuration.html
+
+      13.233.151.73
 
 
-Docker Netwokring
-Kubernetes Netwokring
+Project
+https://github.com/devops-school/helloworld-java-maven
+
+====================================================
+SECRET FORMULA TO WORK WITH JENKINS
+====================================================
+What is TECHNOLOGY?
+		JAVA 		DOTNET
+		----		------
+		JDK		DOT NET
+
+Where is yoru source code?
+		GITHUB
+		https://github.com/devops-school/helloworld-java-maven
+
+What is your BUILDER?
+		MAVEN
+		$ mvn compile
+
+When you want this job to be triggered?
+		daily
+
+Whom you want this feedback to sent out?
+		rajesh@scmgalaxy.com		
+=======================================================
+SonarQube
+https://www.youtube.com/watch?v=UjCVCvdI73w
+
+Server
+http://13.233.151.73:9000/
+
+Src
+https://github.com/devops-school/java-sonar-runner-simple
+
+Scanner
+
+=========================
+Ansible
+===================================
+Ansible
+https://github.com/devops-school/ansible-hello-world-role
+
+ansible-playbook local -i inventory site.yaml
+
+ansible-playbook -i inventory site.yaml
+
+
+How to trigger first job?
+==================================
+@ certain time = Build periodically
+@ certain time & Only if SCM changes = Poll SCM
+@ Build after other projects are built
+@ Script also - Trigger builds remotely (e.g., from scripts)
+@ BASED ON PUSH ----GitHub hook trigger for GITScm polling
+
+
+How to get a IMMEDIATE FEEDBACK?
+====================================
+          Email
+          CHAT
+          DASHBOARD AKA PIPELINE
+                LAzy way  - "Build Pipeline"
+                Scripting way - Pipeline
+                                    jenkinsfile
+
+
+OnMobile CI Process
+
+OnMobile CI Process PIPELINE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CICD
 SECURITY
         RBAC
 HELM

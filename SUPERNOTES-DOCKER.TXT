@@ -1668,7 +1668,186 @@ spec:
   640  history
 
 
+========================================================================
+========================================================================
 
+52.6.246.87
+52.7.28.27
+
+52.5.233.92
+52.55.123.243
+
+Onm0bile
+
+
+MINE - 13.233.104.50
+========================================================================
+========================Docker Netwokring===============================
+Docker DEFAULT NETWORK DRIVER -
+          BRIDGE
+          HOST
+          NONE
+
+
+HOST MACHINE
+          eth0
+          lo
+          VBRIDGE -- docker0(Default bride)
+            VETH CONTAINER 1
+                            eth0
+                            lo
+            VETH CONTAINER 50
+                            eth0
+                            lo
+            VETH CONTAINER 100
+
+Container 1 - in default
+            172.17.0.2 ---VIA VETH--> Docker0
+
+Container 2 - in raj1
+            172.23.0.2  ---VIA VETH-----> br-a7998a224bb5
+
+
+apt-get update && apt-get install -y iputils-ping traceroute net-tools iproute2
+
+ 14  ifconfig
+   15  clear
+   16  ifconfig
+   17  clear
+   18  docker network
+   19  docker network ls
+   20  ifconfig
+   21  docker network ls
+   22  docker inspect 0ef5a0f049fa
+   23  ifconfig
+   24  docker network ls
+   25  clear
+   26  ls
+   27  docker network
+   28  docker network connect
+   29  docker network create
+   30  docker network create --help
+   31  clear
+   32  docker network create dev
+   33  docker network ls
+   34  docker network create qa --driver=bridge
+   35  docker network ls
+   36  docker inspect d56c12f618ab
+   37  docker inspect qa
+   38  clear
+   39  ls
+   40  docker network ls
+   41  ifconfig
+   42  docker network ls
+   43  docker network
+   44  docker network rm qa
+   45  docker network ls
+   46  docker network create raj --driver=bridge --subnet=172.23.0.0/16
+   47  docker network ls
+   48  docker inspect a7998a224bb5
+   49  clear
+   50  ls
+   51  docker help run
+   52  clear
+   53  docker run -itd --name default ubuntu
+   54  docker ps
+   55  docker inspect 7009655b1359
+   56  docker run -itd --name default ubuntu
+   57  docker run -itd --name default1 ubuntu
+   58  docker ps
+   59  docker inspect 8fbb3d0973bb
+   60  clear
+   61  docker network ls
+   62  docker run -itd --name raj1 --net=raj ubuntu
+   63  docker ps
+   64  dcoker inspect 17f456a17e66
+   65  docker inspect 17f456a17e66
+   66  clear
+   67  ls
+   68  clear
+   69  ls
+   70  docker ps
+   71  docker stop 8fbb3d0973bb
+   72  docker rm 8fbb3d0973bb
+   73  clear
+   74  ls
+   75  docker ps
+   76  docker inspect 17f456a17e66
+   77  docker ps
+   78  docker inspect 7009655b1359
+   79  clear
+   80  ifconfig
+   81  ethtool -S veth6bbd537
+   82  ethtool -S vethfefaad1
+   83  ip link
+   84  ethtool vethfefaad1
+   85  clear
+   86  ls
+   87  cler
+   88  ip a
+   89  clear
+   90  ls
+   91  clear
+   92  docker ps
+   93  docker attach 17f456a17e66
+   94  ifconfig
+   95  docker attach 17f456a17e66
+   96  history
+
+  96  history
+   97  clear
+   98  docker ps -a
+   99  docker stop 17f456a17e66 7009655b1359
+  100  docker rm 17f456a17e66 7009655b1359
+  101  clear
+  102  docker ps -a
+  103  docker network ls
+  104  docker run -itd --name def ubuntu
+  105  docker run -itd --name raj --net=raj ubuntu
+  106  clear
+  107  docker os
+  108  docker ps
+  109  docker inspect 6f255f1873d0
+  110  clear
+  111  docker ps
+  112  docker network ls
+  113  docker network connect 6f255f1873d0 0ef5a0f049fa
+  114  docker network connect 0ef5a0f049fa 6f255f1873d0
+  115  docker ps
+  116  docker inspect 6f255f1873d0
+  117  docker attach 6f255f1873d0
+  118  ifconfig
+  119  clear
+  120  docker network ls
+  121  docker ps -a
+  122  docker stop 6f255f1873d0 705aff209ffe
+  123  clear
+  124  docker rm 6f255f1873d0 705aff209ffe
+  125  clear
+  126  docker ps -a
+  127  docker ps -a
+  128  ifconfig
+  129  docker run -it --net=host ubuntu
+  130  docker ps
+  131  docker inspect 1971a9f98207
+  132  clear
+  133  ls
+  134  docker network ls
+  135  docker run -it --name=nonetwork --net=none ubuntu
+  136  clear
+  137  docker ps
+  138  docker inspect 36ea3d903a00
+  139  clear
+  140  ls
+  141  history
+
+
+Docker Netwokring
+Kubernetes Netwokring
+SECURITY
+        RBAC
+HELM
+OPERATORS & CRD
 
 
 

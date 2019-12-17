@@ -2242,14 +2242,178 @@ kubectl convert -f pod.yaml --local -o json
 kubectl convert -f . | kubectl create -f -
 
 
+==========================================
 
+How to install HELM
+====================================
 
 CICD
 SECURITY
         RBAC
 HELM
 OPERATORS & CRD
+==============================================================================
+================================================================================
+HELM
+--------
+========================================================================
+========================================================================					
 
+Helm Architecture
+https://helm.sh/docs/topics/architecture/
+
+	
+=========================================
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+helm
+helm help
+------------
+Working with Helm3?
+==============================
+Step 1 - To learn more about the available Helm commands
+$ helm help
+$ helm get -h
+
+Step 2 - INITIALIZE A HELM CHART REPOSITORY
+Once you have Helm ready, you can add a chart repository. One popular starting location is the official Helm 
+
+stable charts:
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+helm install stable/tomcat
+
+Step 3 - To list the charts you can install:
+# Searches the repositories that you have added to your local helm client (with helm repo add).
+$ helm search repo
+$ helm search repo stable
+# Searches the Helm Hub, which comprises helm charts from dozens of different repositories.
+$ helm search hub	
+$ helm search hub wordpress
+$ helm repo add brigade https://brigadecore.github.io/charts
+$ helm search repo brigade
+
+Step 4 - Make sure we get the latest list of charts
+helm repo update
+
+Step X - Customizing the Chart Before Installing
+$ helm show values stable/mariadb
+$ echo '{mariadbUser: user0, mariadbDatabase: user0db}' > config.yaml
+$ helm install -f config.yaml stable/mariadb
+
+Step 5 - To install a chart, you can run the helm install command
+# Whenever you install a chart, a new release is created. So one chart can be installed multiple times into the 
+
+same cluster. And each can be independently managed and upgraded.
+$ helm install stable/mysql --generate-name
+
+Step 6 - The features of this MySQL chart
+$ helm show chart stable/mysql
+# To get all information about the chart.
+$ helm show all stable/mysql
+
+Step 7 - To show a list of all deployed releases.
+$ helm list
+$ helm status <<release-name>>
+
+Step 8 - To uninstall a release, use the helm uninstall command.
+# Because Helm tracks your releases even after you’ve uninstalled them, you can audit a cluster’s history, and 
+
+even undelete a release 
+$ helm uninstall <<release-name>>
+
+Step 9 - You will be able to request information about that release:
+$ helm status smiling-penguin
+
+Helm Installation Methods
+=============================================================
+A chart repository (as we’ve seen above)
+A local chart archive (helm install foo foo-0.1.1.tgz)
+An unpacked chart directory (helm install foo path/to/foo)
+A full URL (helm install foo https://example.com/charts/foo-1.2.3.tgz)
+
+
+HELM UPGRADE
+=============================================================
+When a new version of a chart is released, or when you want to change the configuration of your release, you 
+
+can use the helm upgrade command.
+
+An upgrade takes an existing release and upgrades it according to the information you provide. Because 
+
+Kubernetes charts can be large and complex, Helm tries to perform the least invasive upgrade. It will only 
+
+update things that have changed since the last release.
+
+$ helm upgrade -f panda.yaml happy-panda stable/mariadb
+
+Charts
+=====================================================
+
+Chart Hooks
+======================================================
+https://helm.sh/docs/topics/charts_hooks/
+
+
+
+Common actions for Helm:
+
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+-----------------
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm search repo stable
+helm repo update
+helm install stable/mysql --generate-name
+helm show chart stable/mysql
+helm show all stable/mysql
+helm ls
+helm list
+helm uninstall smiling-penguin
+helm rollback
+helm get -h
+
+
+  completion  Generate autocompletions script for the specified shell (bash or zsh)
+  create      create a new chart with the given name
+  dependency  manage a chart's dependencies
+  env         Helm client environment information
+  get         download extended information of a named release
+  help        Help about any command
+  history     fetch release history
+  install     install a chart
+  lint        examines a chart for possible issues
+  list        list releases
+  package     package a chart directory into a chart archive
+  plugin      install, list, or uninstall Helm plugins
+  pull        download a chart from a repository and (optionally) unpack it in local directory
+  repo        add, list, remove, update, and index chart repositories
+  rollback    roll back a release to a previous revision
+  search      search for a keyword in charts
+  show        show information of a chart
+  status      displays the status of the named release
+  template    locally render templates
+  test        run tests for a release
+  uninstall   uninstall a release
+  upgrade     upgrade a release
+  verify      verify that a chart at the given path has been signed and is valid
+  version     print the client version informatio	n
+
+Reference
+https://helm.sh/docs/intro/using_helm/
+
+Top 20 Helm Charts
+https://kubedex.com/top-10/
+=================================================================
+
+create
+install
+lint
+package
 
 
 

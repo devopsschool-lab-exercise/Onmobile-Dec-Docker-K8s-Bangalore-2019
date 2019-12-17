@@ -1,3 +1,46 @@
+
+BLOG
+http://devopsschool.com/blog
+
+TUTORIALS
+http://devopsschool.com/tutorial/
+
+SLIDES
+https://www.devopsschool.com/slides
+
+PDF
+https://www.devopsschool.com/pdf/
+
+QUIZ and DUMP
+https://www.devopsschool.com/lms
+
+VIDEO
+https://www.youtube.com/channel/UCrXr49kBvXJeQMMl2693c4g
+
+NOTES
+https://github.com/devopsschool-lab-exercise/Onmobile-Dec-Docker-K8s-Bangalore-2019
+https://www.devopsschool.com/notes/
+
+EXAMPLE programs
+https://github.com/devops-school
+https://github.com/orgs/devopsschool-classroom/dashboard
+https://github.com/orgs/devopsschool-projects/dashboard
+https://github.com/orgs/devopsschool-sample-projects/dashboard
+https://github.com/scmgalaxy
+
+How to REACH OUT TO ME?
+=======================
+http://rajeshkumar.xyz/
+
+How to get training Certificates?
+==================================
+http://devopscertification.co/
+
+
+Please PUBLIC review at
+https://www.google.com/maps/place/DevOps+School/@12.964943,77.5973839,17z/data=!3m1!4b1!4m5!3m4!1s0x3bae15c78e1bd0eb:0x44170a147f09a4b2!8m2!3d12.9649378!4d77.5995726
+
+
 DevOps
 ------------------------
         Each commit must go to release.
@@ -22,7 +65,7 @@ Dev - 10 FEA - 10 DEV
             Unit TESTING - Junit
             Package mgmt -
                             SYSTEM
-                            APP -
+                            APP - jar
             Archive tool - Artifactory
             --------------------------------------
             OnMobX56.7 ----> 100 BOXES
@@ -215,10 +258,6 @@ create -> start -> stop -> start -> restart -> pause -> unpause -> stop -> rm
    85  docker rm 0b6cbacb4750
    86  docker ps -a
 
-To list the local available docker images 
------------------------------------------
-docker image list
-docker image list --no-trunc
 
 
 Pause vs stop
@@ -1670,3 +1709,765 @@ spec:
   638  kubectl exec helloworld-nginx ls  /etc/nginx/conf.d
   639  kubectl exec helloworld-nginx more /etc/nginx/conf.d/myconfo.conf
   640  history
+
+
+========================================================================
+========================================================================
+
+52.6.246.87
+52.7.28.27
+
+52.5.233.92
+52.55.123.243
+
+Onm0bile
+
+
+MINE - 13.233.104.50
+========================================================================
+========================Docker Netwokring===============================
+Docker DEFAULT NETWORK DRIVER -
+          BRIDGE
+          HOST
+          NONE
+============================================
+
+
+HOST MACHINE
+          eth0
+          lo
+          VBRIDGE -- docker0(Default bride)
+            VETH CONTAINER 1
+                            eth0
+                            lo
+            VETH CONTAINER 50
+                            eth0
+                            lo
+            VETH CONTAINER 100
+
+Container 1 - in default
+            172.17.0.2 ---VIA VETH--> Docker0
+
+Container 2 - in raj1
+            172.23.0.2  ---VIA VETH-----> br-a7998a224bb5
+
+
+apt-get update && apt-get install -y iputils-ping traceroute net-tools iproute2
+
+ 14  ifconfig
+   15  clear
+   16  ifconfig
+   17  clear
+   18  docker network
+   19  docker network ls
+   20  ifconfig
+   21  docker network ls
+   22  docker inspect 0ef5a0f049fa
+   23  ifconfig
+   24  docker network ls
+   25  clear
+   26  ls
+   27  docker network
+   28  docker network connect
+   29  docker network create
+   30  docker network create --help
+   31  clear
+   32  docker network create dev
+   33  docker network ls
+   34  docker network create qa --driver=bridge
+   35  docker network ls
+   36  docker inspect d56c12f618ab
+   37  docker inspect qa
+   38  clear
+   39  ls
+   40  docker network ls
+   41  ifconfig
+   42  docker network ls
+   43  docker network
+   44  docker network rm qa
+   45  docker network ls
+   46  docker network create raj --driver=bridge --subnet=172.23.0.0/16
+   47  docker network ls
+   48  docker inspect a7998a224bb5
+   49  clear
+   50  ls
+   51  docker help run
+   52  clear
+   53  docker run -itd --name default ubuntu
+   54  docker ps
+   55  docker inspect 7009655b1359
+   56  docker run -itd --name default ubuntu
+   57  docker run -itd --name default1 ubuntu
+   58  docker ps
+   59  docker inspect 8fbb3d0973bb
+   60  clear
+   61  docker network ls
+   62  docker run -itd --name raj1 --net=raj ubuntu
+   63  docker ps
+   64  dcoker inspect 17f456a17e66
+   65  docker inspect 17f456a17e66
+   66  clear
+   67  ls
+   68  clear
+   69  ls
+   70  docker ps
+   71  docker stop 8fbb3d0973bb
+   72  docker rm 8fbb3d0973bb
+   73  clear
+   74  ls
+   75  docker ps
+   76  docker inspect 17f456a17e66
+   77  docker ps
+   78  docker inspect 7009655b1359
+   79  clear
+   80  ifconfig
+   81  ethtool -S veth6bbd537
+   82  ethtool -S vethfefaad1
+   83  ip link
+   84  ethtool vethfefaad1
+   85  clear
+   86  ls
+   87  cler
+   88  ip a
+   89  clear
+   90  ls
+   91  clear
+   92  docker ps
+   93  docker attach 17f456a17e66
+   94  ifconfig
+   95  docker attach 17f456a17e66
+   96  history
+
+  96  history
+   97  clear
+   98  docker ps -a
+   99  docker stop 17f456a17e66 7009655b1359
+  100  docker rm 17f456a17e66 7009655b1359
+  101  clear
+  102  docker ps -a
+  103  docker network ls
+  104  docker run -itd --name def ubuntu
+  105  docker run -itd --name raj --net=raj ubuntu
+  106  clear
+  107  docker os
+  108  docker ps
+  109  docker inspect 6f255f1873d0
+  110  clear
+  111  docker ps
+  112  docker network ls
+  113  docker network connect 6f255f1873d0 0ef5a0f049fa
+  114  docker network connect 0ef5a0f049fa 6f255f1873d0
+  115  docker ps
+  116  docker inspect 6f255f1873d0
+  117  docker attach 6f255f1873d0
+  118  ifconfig
+  119  clear
+  120  docker network ls
+  121  docker ps -a
+  122  docker stop 6f255f1873d0 705aff209ffe
+  123  clear
+  124  docker rm 6f255f1873d0 705aff209ffe
+  125  clear
+  126  docker ps -a
+  127  docker ps -a
+  128  ifconfig
+  129  docker run -it --net=host ubuntu
+  130  docker ps
+  131  docker inspect 1971a9f98207
+  132  clear
+  133  ls
+  134  docker network ls
+  135  docker run -it --name=nonetwork --net=none ubuntu
+  136  clear
+  137  docker ps
+  138  docker inspect 36ea3d903a00
+  139  clear
+  140  ls
+  141  history
+==================================================CICD==================================================
+What is CI?
+        Continous Integration
+        Auto Build + Auto Testing
+        -----------------------------
+            Immediate Feedback
+        
+        Plan->Code->Analyze->BUild->UT->Pack->Archive->Dep2Qa->AT->CC
+        JIRA->Git->SonarQube->Maven->Junit->Jar>Art->Ansible-Selen->Jacoco
+                                                                    IF ALL PASSED - Dep2Prod
+                                                                    IF FAILED ANY - REPEAT
+        -----------------------------INTEG--------------------------------------
+                                      Continous.
+        ----------------------------IMM FEEDBACK----------------------------------
+        tools
+        Jenkins -> Teamcity -> Bamboo -> UBuild
+        ===========================================================================
+                                    JENKINS
+
+        CD
+            Continous Delivery - You have package available for PROD
+            Continous Deployment -
+
+      ==============================================================================
+      What is Jenkins?
+              CI tool
+              Free 
+              Open Source
+              Powered with pLugins
+
+      Architecutre
+      Server - Node
+      WEB     - Build AGENT
+      8080    - RANDOM
+      -------------------------------------
+      https://www.devopsschool.com/tutorial/jenkins/
+      How to install it?
+      https://www.devopsschool.com/tutorial/jenkins/jenkins-installation-and-configuration.html
+
+      13.233.151.73
+
+
+Project
+https://github.com/devops-school/helloworld-java-maven
+
+====================================================
+SECRET FORMULA TO WORK WITH JENKINS
+====================================================
+What is TECHNOLOGY?
+		JAVA 		DOTNET
+		----		------
+		JDK		DOT NET
+
+Where is yoru source code?
+		GITHUB
+		https://github.com/devops-school/helloworld-java-maven
+
+What is your BUILDER?
+		MAVEN
+		$ mvn compile
+
+When you want this job to be triggered?
+		daily
+
+Whom you want this feedback to sent out?
+		rajesh@scmgalaxy.com		
+=======================================================
+SonarQube
+https://www.youtube.com/watch?v=UjCVCvdI73w
+
+Server
+http://13.233.151.73:9000/
+
+Src
+https://github.com/devops-school/java-sonar-runner-simple
+
+Scanner
+
+=========================
+Ansible
+===================================
+Ansible
+https://github.com/devops-school/ansible-hello-world-role
+
+ansible-playbook local -i inventory site.yaml
+
+ansible-playbook -i inventory site.yaml
+
+
+How to trigger first job?
+==================================
+@ certain time = Build periodically
+@ certain time & Only if SCM changes = Poll SCM
+@ Build after other projects are built
+@ Script also - Trigger builds remotely (e.g., from scripts)
+@ BASED ON PUSH ----GitHub hook trigger for GITScm polling
+
+
+How to get a IMMEDIATE FEEDBACK?
+====================================
+          Email
+          CHAT
+          DASHBOARD AKA PIPELINE
+                LAzy way  - "Build Pipeline"
+                Scripting way - Pipeline
+                                    jenkinsfile
+
+
+OnMobile CI Process
+
+OnMobile CI Process PIPELINE
+
+===========================================================
+RBAC
+HELM
+OPERATORS
+Kubeadm admin
+==============================================
+AUTHENTICATION &&& AUTHORIZATION
+===============================
+AUTHENTICATION 
+            How to get inside a system.
+            ABAC
+            CERT ========================USING 
+            TOKEN
+            LDAP
+
+AUTHORIZATION 
+            What you are allowed to do?
+            RBAC
+
+What is RBAC?
+================================
+ROLE BASED ACCESS CONTROL.
+
+API                   NS
+=======================================
+serviceaccounts       true
+clusterrolebindings   false
+clusterroles          false
+rolebindings          true
+roles                 true
+===============================================================
+API ----> CRUD 
+            USING VERB
+                  - create
+                  - get
+                  - delete
+                  - list
+                  - update
+                  - edit
+                  - watch
+                  - exec
+===================================
+- create
+- get
+- delete
+- list
+- update
+- edit
+- watch
+- exec
+  ------------------
+          ON ONE OR MULTIPLE API  
+                                  ------ USER
+==============================================
+TYPES OF USER
+      user -  OFTEN FOR HUMEN BEING - CAN NOT BE CREATED USING an API
+      serviceacccount -OFTEN FOR SYSTEM PODS and ADMIN work - Can be created by API.
+
+KIND OF roles
+------------------------
+Mapping of API VERB and API RESOURCES - WE CALL IT
+-- clusterroles
+      user AND serviceacccount
+-- roles
+      user AND serviceacccount
+
+BINDING  - types of binding.
+=====================
+clusterrolebindings
+rolebindings
+
+
+
+52.5.233.92
+52.55.123.243
+
+system:masters
+
+
+openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out /root/rbac/employee.crt -days 500
+
+
+
+ 837  kubectl create namespace office
+  838  clear
+  839  ls
+  840  openssl genrsa -out employee.key 2048
+  841  ls
+  842  openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
+  843  ls
+  844  man openssl
+  845  man openssl | grep createserial
+  846  pwd
+  847  openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out /root/rbac/employee.crt -days 500
+  848  ls
+  849  rm -rf employee.csr
+  850  clear
+  851  ls
+  852  clear
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: office
+  name: office-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]
+
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: office-role-binding
+  namespace: office
+subjects:
+- kind: User
+  name: employee
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: office-role
+  apiGroup: ""
+
+
+======USER At LAPTOP==================
+kubectl config set-credentials employee --client-certificate=/root/rbac/employee.crt  --client-key=/root/rbac/employee.key
+
+kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+
+kubectl config use-context employee-context
+
+kubectl --context=employee-context get pods
+
+
+$ kubectl --context=employee-context run nginx --image=nginx
+$ kubectl --context=employee-context get pods
+
+
+
+ 857  kubectl
+  858  kubectl create
+  859  kubectl create role -n=offcie
+  860  kubectl create role offile-role -n=office
+  861  kubectl create role
+  862  kubectl create role -h
+  863  clear
+  864  ls
+  865  vi role.yaml
+  866  kubectl create -f role.yaml
+  867  kubectl get roles -n=office
+  868  kubectl explain RoleBinding.subjects.kind
+  869  kubectl get roles -n=office
+  870  clear
+  871  ls
+  872  vi rb.yaml
+  873  kubectl create -f rb.yaml
+  874  kubectl get RoleBinding -n=office
+  875  clear
+  876  kubectl config
+  877  pwd
+  878  ls
+  879  cleae
+  880  clear
+  881  kubectl config set-credentials employee --client-certificate=/root/rbac/employee.crt  --client-key=/root/rbac/employee.key
+  882  kubectl config
+  883  kubectl config view
+  884  kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+  885  kubectl config view
+  886  kubectl config
+  887  kubectl config use-context
+  888  clear
+  889  kubectl --context=employee-context get pods
+  890  kubectl config use-context employee-context
+  891  kubectl get pods
+  892  kubectl get pvc
+  893  history
+
+==========================================================
+
+kubectl create sa tecnotree-sa
+kubectl get sa -A | grep tec
+
+sa.yaml
+---------------
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: onmob
+
+kubectl create -f sa.yaml
+kubectl get sa -A | grep tec
+kubectl get secrets
+
+
+
+
+
+kubectl help create clusterrole
+kubectl create clusterrole onmob-clusterroles --verb=get,list,watch --resource=pods
+kubectl get clusterrole
+kubectl describe clusterrole onmob-clusterroles
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: default
+  name: tecnotree-clusterroles2
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]
+
+
+
+kubectl create clusterrolebinding onmob-cr-binding --clusterrole=onmob-clusterroles --user=onmob
+kubectl get clusterrolebinding
+kubectl get clusterrolebinding | grep tec
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: tecnotree-cr-binding3
+subjects:
+- kind: ServiceAccount
+  name: tecnotree-admin
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: tecnotree-clusterroles2
+  apiGroup: rbac.authorization.k8s.io
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tecnotree-cr-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tecnotree-clusterroles2
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: tecnotree-admin
+
+
+=========================
+
+ 
+
+
+kubectl convert -f pod.yaml
+kubectl convert -f pod.yaml --local -o json
+kubectl convert -f . | kubectl create -f -
+
+
+==========================================
+
+How to install HELM
+====================================
+
+CICD
+SECURITY
+        RBAC
+HELM
+OPERATORS & CRD
+==============================================================================
+================================================================================
+HELM
+--------
+========================================================================
+========================================================================					
+
+Helm Architecture
+https://helm.sh/docs/topics/architecture/
+
+	
+=========================================
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+helm
+helm help
+------------
+Working with Helm3?
+==============================
+Step 1 - To learn more about the available Helm commands
+$ helm help
+$ helm get -h
+
+Step 2 - INITIALIZE A HELM CHART REPOSITORY
+Once you have Helm ready, you can add a chart repository. One popular starting location is the official Helm 
+
+stable charts:
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+helm install stable/tomcat
+
+Step 3 - To list the charts you can install:
+# Searches the repositories that you have added to your local helm client (with helm repo add).
+$ helm search repo
+$ helm search repo stable
+# Searches the Helm Hub, which comprises helm charts from dozens of different repositories.
+$ helm search hub	
+$ helm search hub wordpress
+$ helm repo add brigade https://brigadecore.github.io/charts
+$ helm search repo brigade
+
+Step 4 - Make sure we get the latest list of charts
+helm repo update
+
+Step X - Customizing the Chart Before Installing
+$ helm show values stable/mariadb
+$ echo '{mariadbUser: user0, mariadbDatabase: user0db}' > config.yaml
+$ helm install -f config.yaml stable/mariadb
+
+Step 5 - To install a chart, you can run the helm install command
+# Whenever you install a chart, a new release is created. So one chart can be installed multiple times into the 
+
+same cluster. And each can be independently managed and upgraded.
+$ helm install stable/mysql --generate-name
+
+Step 6 - The features of this MySQL chart
+$ helm show chart stable/mysql
+# To get all information about the chart.
+$ helm show all stable/mysql
+
+Step 7 - To show a list of all deployed releases.
+$ helm list
+$ helm status <<release-name>>
+
+Step 8 - To uninstall a release, use the helm uninstall command.
+# Because Helm tracks your releases even after you’ve uninstalled them, you can audit a cluster’s history, and 
+
+even undelete a release 
+$ helm uninstall <<release-name>>
+
+Step 9 - You will be able to request information about that release:
+$ helm status smiling-penguin
+
+Helm Installation Methods
+=============================================================
+A chart repository (as we’ve seen above)
+A local chart archive (helm install foo foo-0.1.1.tgz)
+An unpacked chart directory (helm install foo path/to/foo)
+A full URL (helm install foo https://example.com/charts/foo-1.2.3.tgz)
+
+
+HELM UPGRADE
+=============================================================
+When a new version of a chart is released, or when you want to change the configuration of your release, you 
+
+can use the helm upgrade command.
+
+An upgrade takes an existing release and upgrades it according to the information you provide. Because 
+
+Kubernetes charts can be large and complex, Helm tries to perform the least invasive upgrade. It will only 
+
+update things that have changed since the last release.
+
+$ helm upgrade -f panda.yaml happy-panda stable/mariadb
+
+Charts
+=====================================================
+
+Chart Hooks
+======================================================
+https://helm.sh/docs/topics/charts_hooks/
+
+
+
+Common actions for Helm:
+
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+-----------------
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm search repo stable
+helm repo update
+helm install stable/mysql --generate-name
+helm show chart stable/mysql
+helm show all stable/mysql
+helm ls
+helm list
+helm uninstall smiling-penguin
+helm rollback
+helm get -h
+
+
+  completion  Generate autocompletions script for the specified shell (bash or zsh)
+  create      create a new chart with the given name
+  dependency  manage a chart's dependencies
+  env         Helm client environment information
+  get         download extended information of a named release
+  help        Help about any command
+  history     fetch release history
+  install     install a chart
+  lint        examines a chart for possible issues
+  list        list releases
+  package     package a chart directory into a chart archive
+  plugin      install, list, or uninstall Helm plugins
+  pull        download a chart from a repository and (optionally) unpack it in local directory
+  repo        add, list, remove, update, and index chart repositories
+  rollback    roll back a release to a previous revision
+  search      search for a keyword in charts
+  show        show information of a chart
+  status      displays the status of the named release
+  template    locally render templates
+  test        run tests for a release
+  uninstall   uninstall a release
+  upgrade     upgrade a release
+  verify      verify that a chart at the given path has been signed and is valid
+  version     print the client version informatio	n
+
+Reference
+https://helm.sh/docs/intro/using_helm/
+
+Top 20 Helm Charts
+https://kubedex.com/top-10/
+=================================================================
+
+create
+install
+lint
+package
+
+OPERATORS
+================
+https://kubernetes.io/docs/reference/using-api/client-libraries/
+https://operatorhub.io/
+https://operatorhub.io/
+https://github.com/kubernetes/sample-controller
+https://github.com/operator-framework/operator-sdk
+https://github.com/kubernetes-sigs/kubebuilder
+https://itnext.io/building-an-operator-for-kubernetes-with-kubebuilder-17cbd3f07761
+https://itnext.io/building-an-operator-for-kubernetes-with-kubebuilder-17cbd3f07761
+
+
+
+DEBUG
+=====================================
+Container
+    docker logs
+    docker ps
+    docker events
+    docker inspect
+    docker info
+    docker exec
+    docker attach
+    dockerfile
+    docker impot
+    docker export
+
+PODS
+    kubectl describe 
+    kubectl logs
+    kubectl top
+    kubectl attach
+    kubectl exec
+
+
+Node
+    kubelet  help
+
+storage
+
+Network
+================================================================
+
+
